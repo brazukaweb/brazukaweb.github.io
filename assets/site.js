@@ -458,4 +458,185 @@
   }
 
   aoRolar();
+
+  // Atendente virtual (chat com IA). Só aparece quando está ligado no painel.
+  (function () {
+    if (!PAINEL || !window.fetch) return;
+    var SERVICOS = { landing: 'Landing page', site: 'Site institucional', loja: 'Loja virtual', sistema: 'Sistema sob medida' };
+    var SUGESTOES = ['Quanto custa um site?', 'Como funciona?', 'Preciso de uma loja virtual'];
+    var estado = null;
+    try { estado = JSON.parse(sessionStorage.getItem('bzk_chat') || 'null'); } catch (e) {}
+    if (!estado || !estado.sessao) estado = { sessao: novaSessao(), msgs: [], whatsapp: false, encerrado: false };
+    var ocupado = false, montado = false, caixa, lista, form, campo, botaoAbrir, acoes;
+
+    function novaSessao() {
+      var s = '', c = 'abcdefghijklmnopqrstuvwxyz0123456789';
+      var n = new Uint8Array(24);
+      if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(n); else for (var i = 0; i < 24; i++) n[i] = Math.random() * 256;
+      for (var j = 0; j < 24; j++) s += c[n[j] % c.length];
+      return s;
+    }
+    function guardar() { try { sessionStorage.setItem('bzk_chat', JSON.stringify(estado)); } catch (e) {} }
+    function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+
+    function montar() {
+      montado = true;
+      botaoAbrir = el('button', 'chat-abrir');
+      botaoAbrir.type = 'button';
+      botaoAbrir.setAttribute('aria-expanded', 'false');
+      botaoAbrir.setAttribute('aria-controls', 'chat-caixa');
+      botaoAbrir.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg><span>Tirar dúvidas</span>';
+
+      caixa = el('section', 'chat-caixa');
+      caixa.id = 'chat-caixa';
+      caixa.hidden = true;
+      caixa.setAttribute('role', 'dialog');
+      caixa.setAttribute('aria-label', 'Atendente virtual da Brazuka Web');
+      caixa.innerHTML =
+        '<header class="chat-topo"><span class="chat-avatar" aria-hidden="true">&lt;<b>B</b>/&gt;</span>' +
+        '<div><strong>Assistente Brazuka</strong><small>Atendente virtual · responde na hora</small></div>' +
+        '<button class="chat-fechar" type="button" aria-label="Fechar o chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M18 6 6 18M6 6l12 12"/></svg></button></header>' +
+        '<div class="chat-msgs" role="log" aria-live="polite"></div>' +
+        '<div class="chat-acoes"></div>' +
+        '<form class="chat-form"><label class="sr" for="chat-texto">Sua mensagem</label>' +
+        '<textarea id="chat-texto" rows="1" maxlength="500" placeholder="Escreva sua dúvida…"></textarea>' +
+        '<button type="submit" aria-label="Enviar mensagem"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6l-.1 6.5L15 12 3.3 13.9z"/></svg></button></form>' +
+        '<p class="chat-aviso">Assistente virtual com IA: pode errar. Não envie dados pessoais sensíveis. <a href="politica-de-privacidade.html">Privacidade</a></p>';
+
+      document.body.appendChild(botaoAbrir);
+      document.body.appendChild(caixa);
+      lista = caixa.querySelector('.chat-msgs');
+      acoes = caixa.querySelector('.chat-acoes');
+      form = caixa.querySelector('.chat-form');
+      campo = caixa.querySelector('#chat-texto');
+
+      botaoAbrir.addEventListener('click', abrir);
+      caixa.querySelector('.chat-fechar').addEventListener('click', fechar);
+      caixa.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') fechar(); });
+      form.addEventListener('submit', function (ev) { ev.preventDefault(); enviar(campo.value); });
+      campo.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter' && !ev.shiftKey) { ev.preventDefault(); enviar(campo.value); }
+      });
+      campo.addEventListener('input', function () { campo.style.height = 'auto'; campo.style.height = Math.min(campo.scrollHeight, 120) + 'px'; });
+      desenhar();
+    }
+
+    function abrir() {
+      caixa.hidden = false;
+      botaoAbrir.hidden = true;
+      botaoAbrir.setAttribute('aria-expanded', 'true');
+      document.documentElement.classList.add('chat-aberto');
+      desenhar();
+      if (!estado.encerrado) campo.focus();
+    }
+    function fechar() {
+      caixa.hidden = true;
+      botaoAbrir.hidden = false;
+      botaoAbrir.setAttribute('aria-expanded', 'false');
+      document.documentElement.classList.remove('chat-aberto');
+      botaoAbrir.focus();
+    }
+
+    function balao(quem, texto) {
+      var b = el('div', 'chat-msg ' + quem);
+      b.appendChild(el('p', null, texto));
+      return b;
+    }
+    function linkWhatsApp() {
+      var t = 'Olá, Brazuka Web! ';
+      if (estado.nome) t += 'Sou ' + estado.nome + '. ';
+      if (estado.negocio) t += 'Tenho um negócio de ' + estado.negocio + '. ';
+      if (SERVICOS[estado.servico]) t += 'Tenho interesse em: ' + SERVICOS[estado.servico] + '. ';
+      t += 'Vim pelo chat do site.';
+      return 'https://wa.me/' + ZAP + '?text=' + encodeURIComponent(t);
+    }
+
+    function desenhar() {
+      if (!montado) return;
+      lista.innerHTML = '';
+      lista.appendChild(balao('bot', 'Oi! Sou o assistente virtual da Brazuka Web. Posso tirar suas dúvidas sobre sites, lojas virtuais e sistemas. Como posso te ajudar?'));
+      estado.msgs.forEach(function (m) { lista.appendChild(balao(m.role === 'user' ? 'eu' : 'bot', m.content)); });
+      if (!estado.msgs.length) {
+        var sug = el('div', 'chat-sugestoes');
+        SUGESTOES.forEach(function (s) {
+          var b = el('button', null, s);
+          b.type = 'button';
+          b.addEventListener('click', function () { enviar(s); });
+          sug.appendChild(b);
+        });
+        lista.appendChild(sug);
+      }
+      if (ocupado) {
+        var d = el('div', 'chat-msg bot digitando');
+        d.innerHTML = '<span></span><span></span><span></span><b class="sr">Digitando</b>';
+        lista.appendChild(d);
+      }
+      acoes.innerHTML = '';
+      if (estado.whatsapp && !estado.encerrado) {
+        var a = el('a', 'chat-zap', 'Continuar no WhatsApp');
+        a.id = 'chat-zap';
+        a.href = linkWhatsApp();
+        a.target = '_blank';
+        a.rel = 'noopener';
+        acoes.appendChild(a);
+      }
+      campo.disabled = estado.encerrado;
+      form.querySelector('button').disabled = estado.encerrado || ocupado;
+      campo.placeholder = estado.encerrado ? 'Conversa encerrada' : 'Escreva sua dúvida…';
+      lista.scrollTop = lista.scrollHeight;
+    }
+
+    function falha(motivo) {
+      if (motivo === 'desligado') return 'O atendente virtual está fora do ar agora. Fale com a gente pelo WhatsApp!';
+      if (motivo === 'ocupado' || motivo === 'limite') return 'Estou com muita gente agora. Chama a gente no WhatsApp que a equipe responde rapidinho.';
+      return 'Não consegui responder agora. Fale com a gente pelo WhatsApp que a equipe te ajuda.';
+    }
+
+    function enviar(texto) {
+      texto = String(texto || '').trim().slice(0, 500);
+      if (!texto || ocupado || estado.encerrado) return;
+      estado.msgs.push({ role: 'user', content: texto });
+      campo.value = '';
+      campo.style.height = 'auto';
+      ocupado = true;
+      guardar();
+      desenhar();
+      var paraIA = estado.msgs.filter(function (m) { return !m.local; }).slice(-16).map(function (m) { return { role: m.role, content: m.content }; });
+      fetch(PAINEL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ tipo: 'chat', sessao: estado.sessao, mensagens: paraIA })
+      }).then(function (r) { return r.json(); }).then(function (j) {
+        if (j && j.ok) {
+          estado.msgs.push({ role: 'assistant', content: j.resposta });
+          if (j.levar_whatsapp) estado.whatsapp = true;
+          if (j.encerrado) estado.encerrado = true;
+          if (j.nome) estado.nome = j.nome;
+          if (j.negocio) estado.negocio = j.negocio;
+          if (j.servico && j.servico !== 'indefinido') estado.servico = j.servico;
+        } else {
+          estado.msgs.push({ role: 'assistant', content: falha(j && j.motivo), local: true });
+          estado.whatsapp = true;
+        }
+      }).catch(function () {
+        estado.msgs.push({ role: 'assistant', content: falha(), local: true });
+        estado.whatsapp = true;
+      }).then(function () {
+        ocupado = false;
+        guardar();
+        desenhar();
+        if (!estado.encerrado && !caixa.hidden) campo.focus();
+      });
+    }
+
+    var ligado = null;
+    try { ligado = sessionStorage.getItem('bzk_chat_on'); } catch (e) {}
+    if (ligado === '1') montar();
+    else if (ligado !== '0') {
+      fetch(PAINEL + '?ia=1').then(function (r) { return r.json(); }).then(function (j) {
+        try { sessionStorage.setItem('bzk_chat_on', j && j.ia ? '1' : '0'); } catch (e) {}
+        if (j && j.ia) montar();
+      }).catch(function () {});
+    }
+  })();
 })();
