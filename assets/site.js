@@ -1,6 +1,49 @@
 (function () {
   var ZAP = '5521996658904';
 
+  // Painel da Brazuka: conta visitas, cliques e pedidos de orçamento.
+  // Não usa cookies e não guarda IP nem nada que identifique quem só visitou.
+  var PAINEL = 'https://script.google.com/macros/s/AKfycbxdlAuBtzuCv0gpWlvYNloR23rr-718bj-obcPDkAfJBi-4J-8PKAYv97gXhYuex7Y/exec';
+  var celular = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  var naoRastrear = navigator.doNotTrack === '1' || window.doNotTrack === '1';
+  function registrar(tipo, dados) {
+    if (!PAINEL || !navigator.sendBeacon) return;
+    if (naoRastrear && tipo !== 'lead') return;
+    var d = dados || {};
+    d.tipo = tipo;
+    d.pagina = location.pathname;
+    d.dispositivo = celular ? 'celular' : 'computador';
+    try { navigator.sendBeacon(PAINEL, new Blob([JSON.stringify(d)], { type: 'text/plain' })); } catch (e) {}
+  }
+  function origemDaVisita() {
+    var p = new URLSearchParams(location.search);
+    var utm = p.get('utm_source') || p.get('origem');
+    if (utm) return utm.charAt(0).toUpperCase() + utm.slice(1);
+    var ref = '';
+    try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
+    if (!ref || ref === location.hostname) return 'Direto';
+    if (/instagram/.test(ref)) return 'Instagram';
+    if (/google\./.test(ref)) return 'Google';
+    if (/facebook|fb\.com/.test(ref)) return 'Facebook';
+    if (/whatsapp|wa\.me/.test(ref)) return 'WhatsApp';
+    if (/bing\./.test(ref)) return 'Bing';
+    return ref.replace(/^www\./, '');
+  }
+  (function () {
+    var nova = true;
+    try { nova = !sessionStorage.getItem('bzk_visita'); sessionStorage.setItem('bzk_visita', '1'); } catch (e) {}
+    registrar('visita', { nova: nova, origem: nova ? origemDaVisita() : '' });
+  })();
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var canal = /wa\.me|whatsapp/.test(href) ? 'whatsapp' : /instagram\.com/.test(href) ? 'instagram' : /^mailto:/.test(href) ? 'email' : '';
+    if (!canal) return;
+    var secao = a.closest('section[id]');
+    registrar('clique', { detalhe: canal + ' ' + (a.id || (secao ? secao.id : 'topo')) });
+  });
+
   // Menu mobile
   var botao = document.querySelector('.abrir-menu');
   var menu = document.getElementById('menu');
@@ -281,7 +324,8 @@
       var melhor = 'site', max = -1;
       ['landing', 'site', 'loja', 'sistema'].forEach(function (k) { if ((pontos[k] || 0) > max) { max = pontos[k] || 0; melhor = k; } });
       var r = resultados[melhor];
-      var msg = encodeURIComponent('Olá, Brazuka Web! Fiz o teste no site e o resultado foi: ' + r.nome + '. Quero um orçamento.');
+      registrar('quiz', { detalhe: melhor });
+      var msg =encodeURIComponent('Olá, Brazuka Web! Fiz o teste no site e o resultado foi: ' + r.nome + '. Quero um orçamento.');
       var h = '<div class="resultado"><p class="rotulo">O mais indicado para você agora</p><h3>' + r.nome + '</h3><p>' + r.por + '</p><ul>';
       r.itens.forEach(function (it) { h += '<li>' + icone('i-check') + '<span>' + it + '</span></li>'; });
       h += '</ul></div><div class="acoes-res"><a class="btn btn-amarelo" href="https://wa.me/' + ZAP + '?text=' + msg + '" target="_blank" rel="noopener">' + icone('i-zap') + 'Enviar resultado no WhatsApp</a><button type="button" class="refazer">Refazer o teste</button></div>';
@@ -307,6 +351,7 @@
       erro.textContent = '';
       var texto = 'Olá, Brazuka Web! Meu nome é ' + nome + ', tenho um negócio de ' + negocio + ' e preciso de: ' + form.tipo.value + '.';
       if (form.mensagem.value.trim()) texto += ' ' + form.mensagem.value.trim();
+      registrar('lead', { nome: nome, assunto: form.tipo.value + ' · ' + negocio, mensagem: form.mensagem.value.trim() });
       window.location.href = 'https://wa.me/' + ZAP + '?text=' + encodeURIComponent(texto);
     });
   }

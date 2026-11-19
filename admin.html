@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0E3B2C">
+<title>Área do administrador · Brazuka Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --verde:#0E3B2C; --verde2:#15503D; --amarelo:#FFC93C; --off:#F4F1E8; --cinza:#C9D8D0; }
+  * { box-sizing:border-box; margin:0; padding:0 }
+  html, body { background:var(--verde); color:var(--off); font-family:'Inter',system-ui,sans-serif }
+  body { min-height:100vh; min-height:100dvh; display:grid; place-items:center; padding:24px 16px }
+  .caixa { width:100%; max-width:380px }
+  .marca { display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700; font-size:20px }
+  .tag { display:inline-block; white-space:nowrap; background:var(--verde2); border:1px solid rgba(201,216,208,.16); border-radius:12px; padding:6px 9px; font-size:16px }
+  .tag b, .amarelo { color:var(--amarelo) }
+  h1 { font-family:'Space Grotesk',system-ui,sans-serif; font-size:28px; margin:28px 0 8px }
+  p { color:var(--cinza); line-height:1.5; margin-bottom:22px }
+  .btn { display:flex; align-items:center; justify-content:center; min-height:52px; border-radius:14px; background:var(--amarelo); color:var(--verde); font-weight:700; text-decoration:none }
+  .btn:focus-visible { outline:3px solid var(--off); outline-offset:3px }
+  .voltar { display:inline-block; margin-top:18px; color:var(--cinza); font-size:14px }
+</style>
+</head>
+<body>
+<main class="caixa">
+  <div class="marca"><span class="tag" aria-hidden="true">&lt;<b>B</b>/&gt;</span><span>brazuka<span class="amarelo">.web</span></span></div>
+  <h1>Área do administrador</h1>
+  <p id="texto">Abrindo o painel…</p>
+  <a class="btn" id="entrar" href="#" hidden>Entrar no painel</a>
+  <a class="voltar" href="index.html">← Voltar ao site</a>
+</main>
+<script>
+  // Endereço do painel (Google Apps Script). Vazio = painel ainda não publicado.
+  var PAINEL = 'https://script.google.com/macros/s/AKfycbxdlAuBtzuCv0gpWlvYNloR23rr-718bj-obcPDkAfJBi-4J-8PKAYv97gXhYuex7Y/exec';
+  var texto = document.getElementById('texto');
+  var botao = document.getElementById('entrar');
+  if (PAINEL) {
+    botao.href = PAINEL;
+    botao.hidden = false;
+    texto.textContent = 'Você vai para o painel da Brazuka Web. Ele pede a sua senha.';
+    location.replace(PAINEL);
+  } else {
+    texto.textContent = 'O painel ainda não foi publicado.';
+  }
+</script>
+</body>
+</html>
