@@ -189,6 +189,12 @@ h2 small{font-family:var(--texto);font-size:13px;font-weight:500;color:var(--sua
 .folha .fechar{position:absolute;top:12px;right:10px}
 .folha .acoes{display:flex;flex-direction:column;gap:10px;margin-top:18px}
 .folha .lado{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.conversa{display:flex;flex-direction:column;gap:8px;background:var(--verde);border-radius:14px;padding:12px;margin:14px 0;max-height:46vh;overflow-y:auto}
+.bolha{align-self:flex-start;max-width:85%;background:var(--verde2);border-radius:16px 16px 16px 4px;padding:9px 12px;font-size:15px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+.bolha.eu{align-self:flex-end;background:var(--amarelo);color:#0E3B2C;border-radius:16px 16px 4px 16px}
+.bolha time{display:block;font-size:11px;opacity:.7;margin-top:3px}
+.aviso-ig{font-size:13.5px;line-height:1.45;color:var(--off);border:1px solid var(--amarelo);border-radius:12px;padding:10px 12px;margin-top:4px}
+.prazo-ig{margin:2px 0 0;font-size:12.5px;text-align:center}
 .detalhe{background:var(--verde);border-radius:14px;padding:14px;margin:14px 0;line-height:1.55;font-size:15px;white-space:pre-wrap;overflow-wrap:anywhere}
 .meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--cinza);margin-top:6px}
 .passos{padding-left:20px;line-height:1.6;font-size:14px;color:var(--cinza)}
@@ -536,16 +542,19 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     if (!m) return;
     var h = '<h3 id="folha-titulo">' + esc(m.nome) + '</h3><div class="meta"><span>' + esc(CANAL_NOME[m.canal] || m.canal) + '</span>' + (m.contato ? '<span>' + esc(m.contato) + '</span>' : '') + '<span>' + completo(m.quando) + '</span>' + (m.qtd > 1 ? '<span>' + m.qtd + ' mensagens na conversa</span>' : '') + '</div>';
     var corpo = m.canal === 'chat' && m.historico && m.historico.length ? m.historico.map(function (x) { return (x.role === 'user' ? 'Visitante: ' : 'Atendente: ') + x.content; }).join('\n\n') : m.texto;
-    h += '<div class="detalhe"><b>' + esc(m.assunto) + '</b>\n\n' + esc(corpo) + '</div>';
+    if (m.canal === 'instagram') h += '<div class="conversa" id="ig-conversa" aria-live="polite"><p class="sub">Carregando a conversa…</p></div>' +
+      '<form id="form-resp" novalidate><label class="campo"><span>Sua resposta</span><textarea name="texto" rows="3" maxlength="1000" placeholder="Escreva aqui e toque em Enviar"></textarea></label><p class="erro" id="resp-erro" role="alert"></p><button class="btn btn-amarelo btn-cheio" type="submit">' + ic('i-instagram') + 'Enviar resposta</button></form>';
+    else h += '<div class="detalhe"><b>' + esc(m.assunto) + '</b>\n\n' + esc(corpo) + '</div>';
     if (m.canal === 'chat') h += '<p class="sub" style="margin:0">Conversa com o atendente virtual do site. Se a pessoa foi para o WhatsApp, procure pelo nome dela lá.</p>';
     h += '<div class="acoes">';
     if (m.canal === 'email') h += '<a class="btn btn-amarelo" href="' + esc(m.link) + '" target="_blank" rel="noopener">' + ic('i-email') + 'Responder no Gmail</a>';
-    if (m.canal === 'instagram') h += '<a class="btn btn-amarelo" href="' + esc(m.link) + '" target="_blank" rel="noopener">' + ic('i-instagram') + 'Responder no Instagram</a>';
+    if (m.canal === 'instagram') h += '<a class="btn btn-linha" href="' + esc(m.link) + '" target="_blank" rel="noopener">' + ic('i-instagram') + 'Abrir no Instagram</a>';
     if (m.canal === 'site') h += '<p class="sub" style="margin:0">Essa pessoa preencheu o formulário do site e foi levada para o seu WhatsApp com a mensagem pronta. Procure pelo nome dela no WhatsApp.</p><a class="btn btn-amarelo" href="https://wa.me/" target="_blank" rel="noopener">' + ic('i-whatsapp') + 'Abrir o WhatsApp</a>';
     if (m.contatoId) h += '<button class="btn btn-linha" type="button" id="ver-contato">' + ic('i-pessoas') + 'Ver no funil de contatos</button>';
     else h += '<button class="btn btn-linha" type="button" id="virar-contato">' + ic('i-mais') + 'Salvar como contato</button>';
     h += '</div>';
     abrirFolha(h);
+    if (m.canal === 'instagram') ligarResposta(m);
     var vc = $('#ver-contato');
     if (vc) vc.addEventListener('click', function () {
       carregarContatos().then(function () { abrirContato(S.contatos.filter(function (c) { return c.id === m.contatoId; })[0]); });
@@ -553,6 +562,37 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     var vir = $('#virar-contato');
     if (vir) vir.addEventListener('click', function () {
       abrirContato(null, { nome: m.nome.replace(/^@/, ''), contato: m.contato, canal: m.canal === 'email' ? 'E-mail' : m.canal === 'instagram' ? 'Instagram' : 'Site', assunto: m.assunto === 'Direct do Instagram' ? '' : m.assunto.replace(/^Chat do site( · )?/, ''), mensagem: m.texto, ref: m.canal + ':' + m.id });
+    });
+  }
+
+  function ligarResposta(m) {
+    var caixa = $('#ig-conversa'), form = $('#form-resp'), erro = $('#resp-erro');
+    function hora(ms) { var d = new Date(ms); return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+    function mostrar(c) {
+      if (!caixa || !document.body.contains(caixa)) return;
+      caixa.innerHTML = (c.mensagens || []).map(function (x) {
+        return '<div class="bolha' + (x.eu ? ' eu' : '') + '">' + esc(x.texto) + '<time>' + completo(x.quando) + '</time></div>';
+      }).join('') || '<p class="sub">Sem mensagens para mostrar.</p>';
+      if (!c.podeResponder) caixa.innerHTML += '<p class="aviso-ig">O Instagram só deixa responder por aqui até 24 horas depois da última mensagem da pessoa. Essa já passou do prazo: use o botão <b>Abrir no Instagram</b>.</p>';
+      else caixa.innerHTML += '<p class="sub prazo-ig">Dá para responder por aqui até ' + hora(c.prazo) + (new Date(c.prazo).getDate() !== new Date().getDate() ? ' de amanhã' : '') + '.</p>';
+      caixa.scrollTop = caixa.scrollHeight;
+    }
+    api('igConversa', { id: m.id }).then(mostrar, function (e) { if (caixa) caixa.innerHTML = '<p class="erro">' + esc(textoErro(e)) + '</p>'; });
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var txt = form.texto.value.trim(), bt = form.querySelector('button');
+      erro.textContent = '';
+      if (!txt) { erro.textContent = 'Escreva a resposta antes de enviar.'; form.texto.focus(); return; }
+      bt.disabled = true; bt.lastChild.textContent = 'Enviando…';
+      api('igResponder', { id: m.id, texto: txt }).then(function (c) {
+        form.texto.value = '';
+        delete S.cache.mensagens; delete S.cache.inicio;
+        mostrar(c);
+        avisar('Resposta enviada no Instagram.');
+      }, function (e) {
+        var t = textoErro(e);
+        erro.textContent = t.indexOf('JANELA_24H') >= 0 ? 'Passou o prazo de 24 horas desde a última mensagem da pessoa. Responda pelo botão Abrir no Instagram.' : t;
+      }).then(function () { bt.disabled = false; bt.lastChild.textContent = 'Enviar resposta'; });
     });
   }
 
