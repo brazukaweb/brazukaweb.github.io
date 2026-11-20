@@ -2,9 +2,12 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0E3B2C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Painel Brazuka">
 <title>Área do administrador · Brazuka Web</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,39 +15,62 @@
 <style>
   :root { --verde:#0E3B2C; --verde2:#15503D; --amarelo:#FFC93C; --off:#F4F1E8; --cinza:#C9D8D0; }
   * { box-sizing:border-box; margin:0; padding:0 }
-  html, body { background:var(--verde); color:var(--off); font-family:'Inter',system-ui,sans-serif }
-  body { min-height:100vh; min-height:100dvh; display:grid; place-items:center; padding:24px 16px }
-  .caixa { width:100%; max-width:380px }
-  .marca { display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700; font-size:20px }
-  .tag { display:inline-block; white-space:nowrap; background:var(--verde2); border:1px solid rgba(201,216,208,.16); border-radius:12px; padding:6px 9px; font-size:16px }
+  html, body { height:100%; background:var(--verde); color:var(--off); font-family:'Inter',system-ui,sans-serif }
+  body { display:flex; flex-direction:column; min-height:100vh; min-height:100dvh }
+  .barra { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 16px; padding-top:max(8px, env(safe-area-inset-top)); background:var(--verde); border-bottom:1px solid rgba(201,216,208,.14) }
+  .marca { display:flex; align-items:center; gap:8px; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:700; font-size:16px; color:var(--off); text-decoration:none }
+  .tag { display:inline-block; white-space:nowrap; background:var(--verde2); border:1px solid rgba(201,216,208,.16); border-radius:10px; padding:3px 7px; font-size:13px }
   .tag b, .amarelo { color:var(--amarelo) }
-  h1 { font-family:'Space Grotesk',system-ui,sans-serif; font-size:28px; margin:28px 0 8px }
-  p { color:var(--cinza); line-height:1.5; margin-bottom:22px }
-  .btn { display:flex; align-items:center; justify-content:center; min-height:52px; border-radius:14px; background:var(--amarelo); color:var(--verde); font-weight:700; text-decoration:none }
-  .btn:focus-visible { outline:3px solid var(--off); outline-offset:3px }
-  .voltar { display:inline-block; margin-top:18px; color:var(--cinza); font-size:14px }
+  .links { display:flex; gap:14px; font-size:13px }
+  .links a { color:var(--cinza); text-decoration:none }
+  .links a:hover { color:var(--amarelo) }
+  a:focus-visible { outline:3px solid var(--amarelo); outline-offset:3px; border-radius:6px }
+  .palco { position:relative; flex:1; display:flex }
+  iframe { flex:1; width:100%; border:0; background:var(--verde) }
+  .aviso { position:absolute; inset:0; display:grid; place-items:center; padding:24px 16px; text-align:center; pointer-events:none }
+  .aviso p { color:var(--cinza); line-height:1.5; max-width:340px }
+  .aviso .btn { pointer-events:auto; display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; margin-top:16px; border-radius:14px; background:var(--amarelo); color:var(--verde); font-weight:700; text-decoration:none }
+  .sumir { display:none }
 </style>
 </head>
 <body>
-<main class="caixa">
-  <div class="marca"><span class="tag" aria-hidden="true">&lt;<b>B</b>/&gt;</span><span>brazuka<span class="amarelo">.web</span></span></div>
-  <h1>Área do administrador</h1>
-  <p id="texto">Abrindo o painel…</p>
-  <a class="btn" id="entrar" href="#" hidden>Entrar no painel</a>
-  <a class="voltar" href="index.html">← Voltar ao site</a>
+<header class="barra">
+  <a class="marca" href="index.html" aria-label="Brazuka Web, voltar ao site"><span class="tag" aria-hidden="true">&lt;<b>B</b>/&gt;</span><span>brazuka<span class="amarelo">.web</span></span></a>
+  <nav class="links" aria-label="Atalhos">
+    <a id="novaAba" href="#" target="_blank" rel="noopener">Abrir em tela cheia</a>
+    <a href="index.html">Ver site</a>
+  </nav>
+</header>
+<main class="palco">
+  <div class="aviso" id="aviso">
+    <div>
+      <p id="texto">Abrindo o painel…</p>
+      <a class="btn sumir" id="entrar" href="#" target="_blank" rel="noopener">Abrir o painel</a>
+    </div>
+  </div>
+  <iframe id="painel" title="Painel da Brazuka Web" allow="clipboard-write"></iframe>
 </main>
 <script>
   // Endereço do painel (Google Apps Script). Vazio = painel ainda não publicado.
   var PAINEL = 'https://script.google.com/macros/s/AKfycbxdlAuBtzuCv0gpWlvYNloR23rr-718bj-obcPDkAfJBi-4J-8PKAYv97gXhYuex7Y/exec';
+  var aviso = document.getElementById('aviso');
   var texto = document.getElementById('texto');
-  var botao = document.getElementById('entrar');
-  if (PAINEL) {
-    botao.href = PAINEL;
-    botao.hidden = false;
-    texto.textContent = 'Você vai para o painel da Brazuka Web. Ele pede a sua senha.';
-    location.replace(PAINEL);
-  } else {
+  var entrar = document.getElementById('entrar');
+  var quadro = document.getElementById('painel');
+  document.getElementById('novaAba').href = PAINEL || '#';
+  if (!PAINEL) {
     texto.textContent = 'O painel ainda não foi publicado.';
+  } else {
+    entrar.href = PAINEL;
+    var carregou = false;
+    quadro.addEventListener('load', function () { carregou = true; aviso.classList.add('sumir'); });
+    quadro.src = PAINEL;
+    // Se o painel não abrir aqui dentro, oferece abrir em outra aba.
+    setTimeout(function () {
+      if (carregou) return;
+      texto.textContent = 'O painel está demorando para abrir aqui. Toque no botão para abrir em outra aba.';
+      entrar.classList.remove('sumir');
+    }, 12000);
   }
 </script>
 </body>
