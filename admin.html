@@ -48,7 +48,8 @@
       <a class="btn sumir" id="entrar" href="#" target="_blank" rel="noopener">Abrir o painel</a>
     </div>
   </div>
-  <iframe id="painel" title="Painel da Brazuka Web" allow="clipboard-write"></iframe>
+  <!-- credentialless: abre o painel sem as contas Google do navegador (com várias contas logadas o Google mostra "Não foi possível abrir o arquivo") -->
+  <iframe id="painel" title="Painel da Brazuka Web" allow="clipboard-write" credentialless></iframe>
 </main>
 <script>
   // Endereço do painel (Google Apps Script). Vazio = painel ainda não publicado.
