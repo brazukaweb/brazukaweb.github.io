@@ -419,3 +419,11 @@ p{margin:0}
   html.chat-aberto .zap{display:none}
 }
 .rodape .links-base{display:flex;flex-wrap:wrap;gap:8px 20px}
+
+/* Entrada da área do administrador (topo) */
+.acoes-topo{display:flex;align-items:center;gap:12px}
+.entrar-adm{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid rgba(201,216,208,.28);border-radius:12px;color:var(--nevoa);text-decoration:none;font-size:15px;font-weight:600;transition:border-color .2s,color .2s}
+.entrar-adm svg{width:18px;height:18px;flex:none}
+.entrar-adm:hover{border-color:var(--amarelo);color:var(--amarelo)}
+.entrar-adm:focus-visible{outline:3px solid var(--amarelo);outline-offset:3px}
+@media (max-width:900px){.entrar-adm{padding:0 12px}.entrar-adm span{display:none}.topo nav{margin-left:auto}}
