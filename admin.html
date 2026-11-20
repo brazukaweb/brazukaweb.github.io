@@ -658,7 +658,7 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
       if (!C || C.m !== m) return;
       C.msgs = r.mensagens || []; C.cursor = r.cursor; C.mais = r.mais;
       desenharMsgs(true); desenharPe(r);
-      C.timer = setInterval(buscarNovas, 15000);
+      C.timer = setInterval(buscarNovas, 60000);
     }, function (e) {
       $('#chat-msgs').innerHTML = '<p class="erro" style="text-align:center;margin-top:30px">' + esc(textoErro(e)) + '</p>';
     });
@@ -709,6 +709,11 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
   function juntar(r) {
     var ids = {}; C.msgs.forEach(function (x) { if (!x.enviando) ids[x.id] = 1; });
     var novas = (r.mensagens || []).filter(function (x) { return !ids[x.id]; });
+    novas = novas.filter(function (x) {
+      var local = x.eu && C.msgs.filter(function (y) { return y.local && y.texto === x.texto; })[0];
+      if (local) { local.id = x.id; local.local = false; return false; }
+      return true;
+    });
     var mudouResp = (r.mensagens || []).some(function (x) { return x.resp && !C.msgs.some(function (y) { return y.id === x.id && y.resp; }); });
     C.msgs = C.msgs.filter(function (x) { return !x.enviando; });
     if (mudouResp) { var porId = {}; (r.mensagens || []).forEach(function (x) { porId[x.id] = x; }); C.msgs = C.msgs.map(function (x) { return porId[x.id] || x; }); }
@@ -770,8 +775,8 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     bt.disabled = true;
     api('igResponder', { id: m.id, texto: texto, resp: resp }).then(function (r) {
       if (!C || C.m !== m) return;
+      (r.mensagens || []).forEach(function (x) { x.local = true; });
       juntar(r); desenharMsgs(true);
-      if (r.podeResponder !== C.pode) desenharPe(r);
       delete S.cache.mensagens; delete S.cache.inicio;
     }, function (e) {
       if (!C || C.m !== m) return;
