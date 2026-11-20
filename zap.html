@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#061C14">
+<title>Abrindo o WhatsApp · Brazuka Web</title>
+<style>
+  :root{color-scheme:dark}
+  body{margin:0;min-height:100vh;min-height:100dvh;display:grid;place-items:center;background:#061C14;color:#E7EFEA;font:17px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:center;padding:24px;box-sizing:border-box}
+  .tag{display:inline-block;font-weight:700;font-size:22px;letter-spacing:-1px;margin-bottom:18px}
+  .tag b{color:#FFC93C}
+  p{margin:0 0 22px;color:#A3B9AE}
+  a{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:999px;background:#FFC93C;color:#0E3B2C;font-weight:700;text-decoration:none}
+  a:focus-visible{outline:3px solid #E7EFEA;outline-offset:3px}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag" aria-hidden="true">&lt;<b>B</b>/&gt; brazuka<b>.web</b></div>
+  <p>Abrindo o WhatsApp da Brazuka Web…</p>
+  <a id="ir" href="https://wa.me/5521996658904">Abrir o WhatsApp</a>
+</main>
+<script>
+(function () {
+  // Link de post/story: conta de onde a pessoa veio (uma vez por pessoa) e leva ao WhatsApp.
+  var ZAP = '5521996658904';
+  var PAINEL = 'https://script.google.com/macros/s/AKfycbxdlAuBtzuCv0gpWlvYNloR23rr-718bj-obcPDkAfJBi-4J-8PKAYv97gXhYuex7Y/exec';
+  var de = (new URLSearchParams(location.search).get('de') || '').replace(/[^\w\-]/g, '').slice(0, 40);
+  var texto = 'Olá, Brazuka Web! Quero um orçamento de site.' + (de ? ' (vim pelo ' + de.replace(/-/g, ' ') + ')' : '');
+  var destino = 'https://wa.me/' + ZAP + '?text=' + encodeURIComponent(texto);
+  document.getElementById('ir').href = destino;
+  var dono = false, nova = true;
+  try { dono = localStorage.getItem('bzk_dono') === '1'; } catch (e) {}
+  try { var k = 'bzk_link_' + (de || 'sem-nome'); nova = !localStorage.getItem(k); localStorage.setItem(k, '1'); } catch (e) {}
+  var naoRastrear = navigator.doNotTrack === '1' || window.doNotTrack === '1';
+  if (!dono && nova && !naoRastrear && navigator.sendBeacon) {
+    try {
+      navigator.sendBeacon(PAINEL, new Blob([JSON.stringify({
+        tipo: 'clique', detalhe: 'whatsapp link', origem: de || 'sem nome', pagina: '/zap.html', nova: true,
+        dispositivo: /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? 'celular' : 'computador'
+      })], { type: 'text/plain' }));
+    } catch (e) {}
+  }
+  setTimeout(function () { location.replace(destino); }, 350);
+})();
+</script>
+</body>
+</html>

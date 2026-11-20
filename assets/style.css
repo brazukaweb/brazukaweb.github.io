@@ -430,3 +430,63 @@ p{margin:0}
 @media (min-width:1500px){.entrar-adm span{display:inline}}
 @media (max-width:1499px){.entrar-adm{padding:0 12px}}
 @media (max-width:900px){.topo nav{margin-left:auto}}
+
+/* ───────── Tema escuro (o site inteiro) ───────── */
+:root{--noite:#061C14;--noite-2:#09271C;--noite-3:#0E3426;--borda:rgba(127,220,164,.14);--claro:#E7EFEA;--suave:#A3B9AE}
+html{color-scheme:dark}
+body{background:var(--noite);color:var(--claro)}
+::selection{background:var(--amarelo);color:var(--verde)}
+.topo{background:rgba(6,28,20,.88);border-bottom:1px solid var(--borda)}
+.menu a.ativo,.menu a:hover{color:var(--amarelo)}
+@media (max-width:900px){.menu{background:var(--noite-2);border-top-color:var(--borda)}.menu a{border-bottom-color:var(--borda)}}
+/* Topo da página com grade de "código" e brilho verde */
+.hero{background:radial-gradient(900px 520px at 85% 10%,rgba(31,140,95,.42),transparent 65%),radial-gradient(600px 400px at 0% 100%,rgba(255,201,60,.07),transparent 70%),linear-gradient(rgba(201,216,208,.045) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(201,216,208,.045) 1px,transparent 1px) 0 0/40px 40px,var(--noite);border-bottom:1px solid var(--borda)}
+.navegador{box-shadow:0 -10px 80px rgba(0,0,0,.6),0 0 0 1px var(--borda)}
+/* Seções */
+.secao-escura{background:var(--noite-2);border-top:1px solid var(--borda);border-bottom:1px solid var(--borda)}
+.cabeca p,.servico .para,.etapa p,.dif p,.canal span{color:var(--suave)}
+.servicos{border-top-color:var(--borda)}
+.servico,.dif{border-color:var(--borda)}
+.servico .icone,.canal .ic{background:var(--noite-3);border:1px solid rgba(255,201,60,.22)}
+.servico li svg,.dif svg{color:var(--amarelo)}
+.quiz-caixa{background:var(--noite-3);border:1px solid var(--borda)}
+.etapa .num{color:var(--amarelo)}
+.etapa .linha,.etapa .linha::before{background:var(--claro)}
+.etapa .linha::after{border-color:var(--noite)}
+.anima-rolagem .etapa .linha{background:var(--borda)}
+.anima-rolagem .etapa .linha::after{background:var(--noite)}
+.anima-rolagem .etapa .num{color:#3B6652}
+.anima-rolagem .etapa.ativa .num{color:var(--amarelo)}
+.faq details{border-bottom-color:var(--borda)}
+.canal{background:var(--noite-2);border-color:var(--borda);color:var(--claro)}
+.canal:hover{border-color:var(--amarelo)}
+.form{background:var(--noite-2);border:1px solid var(--borda)}
+.campo input,.campo select,.campo textarea{background:var(--noite);color:var(--claro);border-color:var(--borda)}
+.campo input::placeholder,.campo textarea::placeholder{color:#6E857A}
+/* Chamada final */
+.final{background:radial-gradient(700px 300px at 15% 50%,rgba(255,201,60,.16),transparent 70%),var(--noite-2);color:var(--claro);border-top:1px solid var(--borda)}
+.final h2{color:var(--claro)}
+.final .btn-verde{background:var(--amarelo);color:var(--verde)}
+.final .btn-verde:hover{background:var(--amarelo-2)}
+.btn-verde{background:var(--noite-3);color:var(--claro);border-color:var(--borda)}
+.btn-verde:hover{background:var(--verde-2)}
+/* Rodapé */
+.rodape{background:#04140E;border-top:1px solid var(--borda)}
+.rodape .base{border-top-color:var(--borda)}
+/* Política de privacidade */
+.texto-longo p,.texto-longo li{color:#C3D3CB}
+.texto-longo .data{color:var(--suave)}
+.texto-longo a{color:var(--amarelo)}
+/* Atendente virtual do site */
+.chat-caixa{background:var(--noite);color:var(--claro);box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px var(--borda)}
+.chat-topo{background:var(--noite-3)}
+.chat-msg.bot{background:var(--noite-3);border-color:var(--borda)}
+.chat-msg.eu{background:var(--amarelo);color:var(--verde)}
+.chat-sugestoes button{border-color:rgba(255,201,60,.5);color:var(--amarelo)}
+.chat-sugestoes button:hover{background:var(--amarelo);color:var(--verde)}
+.chat-form,.chat-aviso{background:var(--noite-2);border-top-color:var(--borda)}
+.chat-form textarea{background:var(--noite);color:var(--claro);border-color:var(--borda)}
+.chat-form textarea:focus{border-color:var(--amarelo)}
+.chat-form button{background:var(--amarelo);color:var(--verde)}
+.chat-aviso{color:var(--suave)}
+.chat-aviso a{color:var(--amarelo)}

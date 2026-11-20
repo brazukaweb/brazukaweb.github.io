@@ -11,14 +11,14 @@
 <title>Painel · Brazuka Web</title>
 <!-- Gerado por painel/gerar-admin.sh a partir do painel/Index.html. Não edite aqui. -->
 <script>window.PAINEL_API = 'https://script.google.com/macros/s/AKfycbxdlAuBtzuCv0gpWlvYNloR23rr-718bj-obcPDkAfJBi-4J-8PKAYv97gXhYuex7Y/exec';</script>
-<meta name="theme-color" content="#0E3B2C">
+<meta name="theme-color" content="#061C14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --verde:#0E3B2C; --verde2:#15503D; --verde3:#1C6049; --amarelo:#FFC93C; --off:#F4F1E8; --cinza:#C9D8D0;
-  --suave:#9FBBAE; --linha:rgba(201,216,208,.16); --vermelho:#FF8A7A; --azul:#8CB8FF; --rosa:#F59BD0; --verdeok:#7FDCA4;
+  --verde:#061C14; --verde2:#0B2C20; --verde3:#12392B; --amarelo:#FFC93C; --off:#F4F1E8; --cinza:#C9D8D0;
+  --suave:#9FBBAE; --linha:rgba(127,220,164,.15); --vermelho:#FF8A7A; --azul:#8CB8FF; --rosa:#F59BD0; --verdeok:#7FDCA4;
   --raio:18px; --titulo:'Space Grotesk',system-ui,sans-serif; --texto:'Inter',system-ui,sans-serif;
   --nav:68px;
 }
@@ -57,7 +57,7 @@ svg.i{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .erro{color:var(--vermelho);font-size:14px;min-height:20px;margin:-4px 0 10px}
 
 /* Estrutura */
-.topo{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));background:rgba(14,59,44,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+.topo{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));background:rgba(6,28,20,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
 .topo h1{font-family:var(--titulo);font-size:20px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .topo .tag{padding:5px 8px;font-size:14px}
 .icone-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;color:var(--cinza)}
@@ -66,7 +66,7 @@ svg.i{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-widt
 @keyframes gira{to{transform:rotate(360deg)}}
 main{padding:16px 16px calc(var(--nav) + 28px + env(safe-area-inset-bottom));max-width:720px;margin:0 auto}
 main:focus{outline:none}
-.abas{position:fixed;left:0;right:0;bottom:0;z-index:6;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(10,46,34,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--linha);padding-bottom:env(safe-area-inset-bottom)}
+.abas{position:fixed;left:0;right:0;bottom:0;z-index:6;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(4,20,14,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--linha);padding-bottom:env(safe-area-inset-bottom)}
 .abas button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:var(--nav);font-size:11px;font-weight:600;color:var(--suave)}
 .abas button[aria-current="page"]{color:var(--amarelo)}
 .abas button[aria-current="page"]::before{content:"";position:absolute;top:0;left:30%;right:30%;height:3px;border-radius:0 0 4px 4px;background:var(--amarelo)}
@@ -139,6 +139,14 @@ h2 small{font-family:var(--texto);font-size:13px;font-weight:500;color:var(--sua
 .st-orcamento{background:rgba(245,155,208,.18);color:var(--rosa)}
 .st-fechado{background:rgba(127,220,164,.2);color:var(--verdeok)}
 .st-perdido{background:rgba(201,216,208,.12);color:var(--suave)}
+.pg-nao{background:rgba(255,138,122,.16);color:var(--vermelho)}
+.pg-parcial{background:rgba(255,201,60,.16);color:var(--amarelo)}
+.pg-sim{background:rgba(127,220,164,.2);color:var(--verdeok)}
+.busca{display:flex;align-items:center;gap:10px;background:var(--verde2);border:1.5px solid var(--linha);border-radius:14px;padding:0 14px;margin-bottom:12px;min-height:48px}
+.busca:focus-within{border-color:var(--amarelo)}
+.busca svg{width:18px;height:18px;color:var(--suave);flex:none}
+.busca input{flex:1;min-width:0;background:none;border:0;font-size:16px;min-height:46px;outline:none}
+.av-cli{background:rgba(255,201,60,.14);color:var(--amarelo)}
 .linha-fin{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px;border-bottom:1px solid var(--linha);min-height:64px}
 .linha-fin:last-child{border-bottom:0}
 .linha-fin:active{background:var(--verde3)}
@@ -253,6 +261,97 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
 @media (min-width:720px){
   .grade.quatro{grid-template-columns:repeat(4,1fr)}
 }
+/* Marketing: posts do Instagram e links de post */
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.post{display:flex;flex-direction:column;background:var(--verde2);border:1px solid var(--linha);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit}
+.post:hover{border-color:var(--amarelo)}
+.post-img{position:relative;display:block;aspect-ratio:1;background:var(--verde3)}
+.post-img img{width:100%;height:100%;object-fit:cover;display:block}
+.post-img span{position:absolute;left:6px;top:6px;font-size:11px;font-weight:700;background:rgba(0,0,0,.6);color:#fff;padding:2px 8px;border-radius:999px}
+.post-info{display:flex;flex-direction:column;gap:6px;padding:8px 10px 10px}
+.post-info time{font-size:12px;color:var(--suave)}
+.post-leg{font-size:13px;line-height:1.3;color:var(--cinza);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
+.post-num{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;font-weight:700}
+.post-num span{display:inline-flex;align-items:center;gap:4px}
+.post-num svg{width:15px;height:15px;color:var(--amarelo)}
+.linha-link{display:flex;gap:8px;margin:12px 0}
+.linha-link input{flex:1;min-width:0;background:var(--verde);border:1.5px solid var(--linha);border-radius:12px;padding:0 12px;min-height:46px;font-size:16px}
+.linha-link input:focus{border-color:var(--amarelo);outline:none}
+.link-pronto{display:flex;gap:8px;align-items:center;background:var(--verde);border:1px solid var(--linha);border-radius:12px;padding:8px 8px 8px 12px;margin-bottom:12px}
+.link-pronto[hidden]{display:none}
+.link-pronto code{flex:1;min-width:0;overflow-wrap:anywhere;font-size:13.5px;color:var(--amarelo)}
+/* Dossiê do cliente */
+.dossie{display:none}
+.dos-topo{display:flex;align-items:center;justify-content:space-between;margin:-4px -6px 10px 0}
+.dos-topo b{font-family:var(--titulo);font-size:17px}
+.dos-quem{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.dos-quem div{display:flex;flex-direction:column;gap:5px;min-width:0}
+.dos-quem b{font-size:16px;overflow-wrap:anywhere}
+.dos-dados{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:0 0 14px;font-size:14px}
+.dos-dados dt{color:var(--suave)}
+.dos-dados dd{margin:0;overflow-wrap:anywhere}
+.dos-dados a{color:var(--amarelo)}
+.dos-notas{margin-top:16px}
+.dos-notas textarea{min-height:120px}
+.dos-breve{margin:14px 0 0;font-size:12.5px}
+.b-erro{display:block;margin-top:5px;font-size:12.5px;font-weight:600;color:#7a1d10}
+@media (min-width:900px){
+  body.modo-chats.dossie-aberto .chat{right:340px}
+  body.modo-chats .dossie:not([hidden]){display:block;position:fixed;top:69px;right:0;bottom:0;width:340px;z-index:4;overflow-y:auto;background:var(--verde2);border-left:1px solid var(--linha);padding:14px 16px 24px}
+  body.modo-chats .chat[hidden]~.dossie{display:none!important}
+}
+/* Menu lateral e chats lado a lado (computador) */
+html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
+.lado-topo,.lado-sub,.so-lado,.chat-vazio{display:none!important}
+.seg-status{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--verde2);border:1px solid var(--linha);border-radius:12px;padding:4px;margin:0 0 12px}
+.seg-status button{min-height:38px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--cinza);display:flex;align-items:center;justify-content:center;gap:6px}
+.seg-status button[aria-pressed="true"]{background:var(--verde3);color:var(--off)}
+.seg-status .n{font-size:12px;color:var(--suave)}
+.seg-status button[aria-pressed="true"] .n{color:var(--amarelo)}
+.msg.aberta{background:var(--verde3)}
+.msg.aberta::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:0 3px 3px 0;background:var(--amarelo)}
+.pt{width:8px;height:8px;border-radius:50%;flex:none}
+.pt-pend{background:var(--amarelo)}
+.pt-resp{background:var(--verdeok)}
+@media (min-width:900px){
+  :root{--lado:236px}
+  body.lado-fechado{--lado:76px}
+  #painel{padding-left:var(--lado)}
+  .topo .tag{display:none}
+  main{max-width:960px;padding-bottom:40px}
+  .toast{bottom:24px;left:calc(var(--lado) + 16px)}
+  .fab{bottom:24px}
+  .abas{top:0;right:auto;width:var(--lado);display:flex;flex-direction:column;gap:2px;padding:14px 10px;border-top:0;border-right:1px solid var(--linha);overflow-y:auto;overflow-x:hidden;transition:width .2s}
+  .abas button{flex-direction:row;justify-content:flex-start;gap:12px;height:44px;padding:0 14px;border-radius:12px;font-size:14.5px;flex:none;white-space:nowrap}
+  .abas button:hover{background:var(--verde2);color:var(--off)}
+  .abas button[aria-current="page"]{background:var(--verde2)}
+  .abas button[aria-current="page"]::before{top:10px;bottom:10px;left:0;right:auto;width:3px;height:auto;border-radius:0 3px 3px 0}
+  .abas .bolinha{position:static;margin-left:auto}
+  .so-lado{display:flex!important;margin-top:auto}
+  .lado-topo{display:flex!important;align-items:center;gap:10px;padding:0 4px 0 6px;margin-bottom:14px;min-height:44px}
+  .lado-nome{font-family:var(--titulo);font-weight:700;font-size:17px;flex:1;white-space:nowrap}
+  .lado-nome b{color:var(--amarelo)}
+  .lado-recolher{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--suave);flex:none}
+  .lado-recolher:hover{background:var(--verde2);color:var(--off)}
+  .lado-recolher svg{transition:transform .2s}
+  .lado-sub{display:flex!important;flex-direction:column;gap:1px;margin:2px 0 8px 22px;padding-left:12px;border-left:1px solid var(--linha)}
+  .lado-sub button{height:34px;padding:0 10px;font-size:13px;font-weight:500;color:var(--suave);gap:9px}
+  .lado-sub b{margin-left:auto;font-size:12px;color:var(--cinza)}
+  body.lado-fechado .lado-nome,body.lado-fechado .rot-lado,body.lado-fechado .lado-sub{display:none!important}
+  body.lado-fechado .lado-topo{flex-direction:column;gap:8px;padding:0}
+  body.lado-fechado .lado-recolher svg{transform:rotate(180deg)}
+  body.lado-fechado .abas button{justify-content:center;padding:0}
+  body.lado-fechado .abas .bolinha{position:absolute;top:4px;left:auto;right:6px;margin:0}
+  /* Chats: lista à esquerda, conversa à direita */
+  body.modo-chats main{position:fixed;top:69px;bottom:0;left:var(--lado);width:400px;max-width:none;margin:0;overflow-y:auto;padding:14px 14px 24px;border-right:1px solid var(--linha);overscroll-behavior:contain}
+  body.modo-chats .chips{margin:0 -14px 12px;padding:2px 14px 4px}
+  body.modo-chats .chat,body.modo-chats .chat-vazio{position:fixed;top:69px;left:calc(var(--lado) + 400px);right:0;bottom:0;z-index:4}
+  body.modo-chats .chat-vazio{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;color:var(--suave);padding:24px}
+  body.modo-chats .chat-vazio svg{width:46px;height:46px;color:var(--verde3)}
+  body.modo-chats .chat:not([hidden])+.chat-vazio{display:none!important}
+  body.modo-chats .chat-topo{padding-top:8px}
+  body.modo-chats .toast{left:calc(var(--lado) + 416px)}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -277,6 +376,9 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
   <symbol id="i-sair" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
   <symbol id="i-externo" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
   <symbol id="i-cadeado" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-lupa" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-coracao" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.2-9.3C1.7 7.5 3.8 4.5 7 4.5c2 0 3.3 1.1 5 3 1.7-1.9 3-3 5-3 3.2 0 5.3 3 4.2 6.2C19.5 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-olho" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="i-enviar" viewBox="0 0 24 24"><path d="M21 3 3 10.5l7.5 3L13.5 21z"/><path d="m10.5 13.5 4.5-4.5"/></symbol>
   <symbol id="i-responder" viewBox="0 0 24 24"><path d="M9 6 3.5 11.5 9 17"/><path d="M4 11.5h10a6.5 6.5 0 0 1 6.5 6.5v1"/></symbol>
 </svg>
@@ -304,11 +406,17 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
   </header>
   <main id="conteudo" tabindex="-1" aria-live="polite"></main>
   <nav class="abas" aria-label="Seções do painel">
-    <button type="button" data-aba="inicio"><svg class="i"><use href="#i-casa"/></svg>Início</button>
-    <button type="button" data-aba="mensagens"><svg class="i"><use href="#i-chat"/></svg>Chats<span class="bolinha" id="bolinha-msg" hidden></span></button>
-    <button type="button" data-aba="contatos"><svg class="i"><use href="#i-pessoas"/></svg>Contatos<span class="bolinha" id="bolinha-cont" hidden></span></button>
-    <button type="button" data-aba="marketing"><svg class="i"><use href="#i-grafico"/></svg>Marketing</button>
-    <button type="button" data-aba="financas"><svg class="i"><use href="#i-carteira"/></svg>Finanças</button>
+    <div class="lado-topo"><span class="tag" aria-hidden="true">&lt;<b>B</b>/&gt;</span><span class="lado-nome">brazuka<b>.web</b></span><button type="button" class="lado-recolher" id="lado-recolher" aria-label="Recolher o menu" aria-expanded="true"><svg class="i"><use href="#i-seta-e"/></svg></button></div>
+    <button type="button" data-aba="inicio" title="Início"><svg class="i"><use href="#i-casa"/></svg><span class="rot-lado">Início</span></button>
+    <button type="button" data-aba="mensagens" title="Chats"><svg class="i"><use href="#i-chat"/></svg><span class="rot-lado">Chats</span><span class="bolinha" id="bolinha-msg" hidden></span></button>
+    <div class="lado-sub" aria-label="Resumo dos chats">
+      <button type="button" data-sub="pend"><i class="pt pt-pend"></i>Aguardando resposta<b id="sub-pend">0</b></button>
+      <button type="button" data-sub="resp"><i class="pt pt-resp"></i>Respondidas<b id="sub-resp">–</b></button>
+    </div>
+    <button type="button" data-aba="contatos" title="Clientes"><svg class="i"><use href="#i-pessoas"/></svg><span class="rot-lado">Clientes</span><span class="bolinha" id="bolinha-cont" hidden></span></button>
+    <button type="button" data-aba="marketing" title="Marketing"><svg class="i"><use href="#i-grafico"/></svg><span class="rot-lado">Marketing</span></button>
+    <button type="button" data-aba="financas" title="Finanças"><svg class="i"><use href="#i-carteira"/></svg><span class="rot-lado">Finanças</span></button>
+    <button type="button" data-aba="ajustes" class="so-lado" title="Ajustes"><svg class="i"><use href="#i-engrenagem"/></svg><span class="rot-lado">Ajustes</span></button>
   </nav>
 </div>
 
@@ -327,11 +435,13 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     <span class="av" id="chat-av" aria-hidden="true"></span>
     <div class="chat-quem"><b id="chat-nome"></b><span id="chat-sub"></span></div>
     <a class="icone-btn" id="chat-externo" href="#" target="_blank" rel="noopener" aria-label="Abrir no Instagram" title="Abrir no Instagram"><svg class="i"><use href="#i-externo"/></svg></a>
-    <button class="icone-btn" id="chat-contato" type="button" aria-label="Salvar como contato" title="Contato"><svg class="i"><use href="#i-pessoas"/></svg></button>
+    <button class="icone-btn" id="chat-contato" type="button" aria-label="Dossiê do cliente" title="Dossiê do cliente" aria-expanded="false"><svg class="i"><use href="#i-pessoas"/></svg></button>
   </header>
   <div class="chat-msgs" id="chat-msgs" aria-live="polite"></div>
   <div class="chat-pe" id="chat-pe"></div>
 </div>
+<div class="chat-vazio" aria-hidden="true"><svg class="i"><use href="#i-chat"/></svg><p>Escolha uma conversa na lista para abrir aqui.</p></div>
+<aside class="dossie" id="dossie" aria-label="Dossiê do cliente" hidden></aside>
 
 <div id="toast" class="toast" role="status" aria-live="polite"><span id="toast-txt"></span><button type="button" id="toast-acao" hidden></button></div>
 
@@ -342,15 +452,17 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
   /* ───────── Estado ───────── */
   var S = {
     token: lerToken(), aba: 'inicio', cache: {},
-    filtroMsg: 'todas', soPendentes: false, filtroCont: 'todos',
+    filtroMsg: 'todas', status: 'todas', filtroCont: 'todos',
     dias: 30, mes: mesDeHoje(), msgs: [], contatos: [], lancamentos: [],
     canais: ['Site', 'WhatsApp', 'Instagram', 'E-mail', 'Indicação', 'Outro'],
     etapas: ['novo', 'conversando', 'orcamento', 'fechado', 'perdido'],
     formas: ['Pix', 'Cartão', 'Boleto', 'Dinheiro', 'Transferência', 'Mercado Pago', 'Outro']
   };
-  var NOMES_ETAPA = { novo: 'Novo', conversando: 'Conversando', orcamento: 'Orçamento enviado', fechado: 'Fechado', perdido: 'Perdido' };
+  var NOMES_ETAPA = { novo: 'Interessado', conversando: 'Conversando', orcamento: 'Orçamento enviado', fechado: 'Cliente', perdido: 'Não fechou' };
+  var NOMES_PAGO = { nao: 'Não pago', parcial: 'Pago em parte', sim: 'Pago' };
+  var SERVICOS = ['Landing page', 'Site institucional', 'Loja virtual', 'Sistema sob medida', 'Manutenção', 'Outro'];
   var CORES_ETAPA = { novo: '#FFC93C', conversando: '#8CB8FF', orcamento: '#F59BD0', fechado: '#7FDCA4', perdido: '#6F8F82' };
-  var TITULOS = { inicio: 'Início', mensagens: 'Chats', contatos: 'Contatos', marketing: 'Marketing', financas: 'Finanças', ajustes: 'Ajustes' };
+  var TITULOS = { inicio: 'Início', mensagens: 'Chats', contatos: 'Clientes', marketing: 'Marketing', financas: 'Finanças', ajustes: 'Ajustes' };
   var CANAL_ICONE = { email: 'i-email', instagram: 'i-instagram', site: 'i-site', whatsapp: 'i-whatsapp', chat: 'i-chat' };
   var CANAL_NOME = { email: 'E-mail', instagram: 'Instagram', site: 'Site', whatsapp: 'WhatsApp', chat: 'Chat do site' };
   var QUIZ = { landing: 'Landing page', site: 'Site institucional', loja: 'Loja virtual', sistema: 'Sistema sob medida' };
@@ -483,10 +595,21 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
 
   /* ───────── Navegação ───────── */
   function abrirPainel() {
+    try { localStorage.setItem('bzk_dono', '1'); } catch (e) {}
     $('#tela-login').hidden = true; $('#painel').hidden = false;
     ir(S.aba);
   }
-  $$('.abas button').forEach(function (b) { b.addEventListener('click', function () { ir(b.dataset.aba); }); });
+  $$('.abas button[data-aba]').forEach(function (b) { b.addEventListener('click', function () { ir(b.dataset.aba); }); });
+  $$('.lado-sub button').forEach(function (b) { b.addEventListener('click', function () { S.status = b.dataset.sub; S.filtroMsg = 'todas'; ir('mensagens'); }); });
+  function telaLarga() { return window.matchMedia('(min-width:900px)').matches; }
+  function ladoFechado(f) {
+    document.body.classList.toggle('lado-fechado', f);
+    $('#lado-recolher').setAttribute('aria-expanded', String(!f));
+    $('#lado-recolher').setAttribute('aria-label', f ? 'Abrir o menu' : 'Recolher o menu');
+    try { localStorage.setItem('painel-lado', f ? 'fechado' : 'aberto'); } catch (e) {}
+  }
+  $('#lado-recolher').addEventListener('click', function () { ladoFechado(!document.body.classList.contains('lado-fechado')); });
+  try { if (localStorage.getItem('painel-lado') === 'fechado') ladoFechado(true); } catch (e) {}
   $('#btn-ajustes').addEventListener('click', function () { ir('ajustes'); });
   $('#btn-atualizar').addEventListener('click', function () { ir(S.aba, true); });
 
@@ -495,8 +618,10 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
   function ir(aba, forcar) {
     var mudou = aba !== S.aba;
     S.aba = aba;
+    document.body.classList.toggle('modo-chats', aba === 'mensagens');
+    if (aba !== 'mensagens' && !$('#chat').hidden) fecharChat(true);
     $('#titulo').textContent = TITULOS[aba];
-    $$('.abas button').forEach(function (b) { if (b.dataset.aba === aba) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+    $$('.abas button[data-aba]').forEach(function (b) { if (b.dataset.aba === aba) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     if (mudou) { window.scrollTo(0, 0); }
     var v = VIEWS[aba];
     var chave = v.chave ? v.chave() : aba;
@@ -540,12 +665,13 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
       bolinha('#bolinha-cont', r.contatosNovos || 0);
       S.msgs = r.ultimas || [];
       var esperando = (r.emailsPendentes || 0) + (r.igPendentes || 0);
+      if (!S.cache.mensagens) $('#sub-pend').textContent = esperando;
       var h = '<p class="ola">' + saudacao() + ', Daniel</p><p class="sub">' + new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' }) + '</p>';
       (r.avisos || []).forEach(function (a) { h += '<div class="faixa erro-f">' + ic('i-alerta') + '<div>' + esc(a) + '</div></div>'; });
       h += '<div class="grade quatro">' +
         kpi('mensagens', 'i-chat', 'Mensagens esperando', num(esperando), (r.emailsPendentes || 0) + ' e-mail' + ((r.emailsPendentes === 1) ? '' : 's') + ' · ' + (r.instagram ? (r.igPendentes || 0) + ' no Instagram' : 'Instagram desligado'), esperando > 0) +
-        kpi('contatos', 'i-pessoas', 'Contatos novos', num(r.contatosNovos), (r.emAndamento || 0) + ' em negociação') +
-        kpi('marketing', 'i-grafico', 'Visitas hoje', num(r.visitasHoje), num(r.visitas7) + ' nos últimos 7 dias') +
+        kpi('contatos', 'i-pessoas', 'Interessados novos', num(r.contatosNovos), (r.emAndamento || 0) + ' em negociação') +
+        kpi('marketing', 'i-grafico', 'Pessoas novas hoje', num(r.visitasHoje), num(r.visitas7) + ' nos últimos 7 dias') +
         kpi('financas', 'i-carteira', 'Entrou este mês', brl(r.entrouMes), 'A receber: ' + brl(r.aReceber), false, true) +
         '</div>';
       if (!r.instagram) h += '<div class="faixa" style="margin-top:14px">' + ic('i-instagram') + '<div><b>Conecte o Instagram</b> para ver os Directs aqui e acompanhar os seguidores.<br><button class="btn btn-amarelo" type="button" data-acao="ir" data-para="ajustes">Conectar agora</button></div></div>';
@@ -561,7 +687,8 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
 
   /* ───────── Mensagens ───────── */
   function itemMsg(m, i) {
-    return '<button type="button" class="msg' + (m.pendente ? ' pendente' : '') + '" data-acao="msg" data-i="' + i + '">' +
+    var aberta = C && C.m && C.m.id === m.id && C.m.canal === m.canal;
+    return '<button type="button" class="msg' + (m.pendente ? ' pendente' : '') + (aberta ? ' aberta" aria-current="true' : '') + '" data-acao="msg" data-i="' + i + '">' +
       (m.canal === 'instagram' || m.canal === 'chat'
         ? '<span class="av av-' + m.canal + '" aria-hidden="true">' + esc(inicial(m.nome)) + '<span class="selo">' + ic(CANAL_ICONE[m.canal]) + '</span></span>'
         : '<span class="ic ic-' + m.canal + '">' + ic(CANAL_ICONE[m.canal] || 'i-chat') + '</span>') +
@@ -576,21 +703,26 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
       var todos = d.itens || [];
       var cont = { todas: todos.length, email: 0, instagram: 0, site: 0, chat: 0 };
       todos.forEach(function (m) { cont[m.canal] = (cont[m.canal] || 0) + 1; });
-      var lista = todos.filter(function (m) { return (S.filtroMsg === 'todas' || m.canal === S.filtroMsg) && (!S.soPendentes || m.pendente); });
+      var lista = todos.filter(function (m) { return (S.filtroMsg === 'todas' || m.canal === S.filtroMsg) && (S.status === 'todas' || (S.status === 'pend') === !!m.pendente); });
       S.msgs = lista;
       bolinha('#bolinha-msg', todos.filter(function (m) { return m.pendente && m.canal !== 'site'; }).length);
+      var nPend = todos.filter(function (m) { return m.pendente; }).length, nResp = todos.length - nPend;
+      $('#sub-pend').textContent = nPend; $('#sub-resp').textContent = nResp;
       var h = '<div class="chips" role="group" aria-label="Filtrar por canal">' +
         chip('msg', 'todas', 'Todas', cont.todas) + chip('msg', 'email', 'E-mail', cont.email) + chip('msg', 'instagram', 'Instagram', cont.instagram) + chip('msg', 'site', 'Site / WhatsApp', cont.site) + chip('msg', 'chat', 'Chat do site', cont.chat) + '</div>';
-      h += '<button type="button" class="alternar" role="switch" id="so-pend" aria-checked="' + S.soPendentes + '">Só as que esperam resposta<span class="trilho"></span></button>';
+      h += '<div class="seg-status" role="group" aria-label="Filtrar por situação">' +
+        [['todas', 'Todas', todos.length], ['pend', 'Aguardando', nPend], ['resp', 'Respondidas', nResp]].map(function (o) {
+          return '<button type="button" data-situ="' + o[0] + '" aria-pressed="' + (S.status === o[0]) + '">' + (o[0] === 'pend' ? '<i class="pt pt-pend"></i>' : o[0] === 'resp' ? '<i class="pt pt-resp"></i>' : '') + o[1] + ' <span class="n">' + o[2] + '</span></button>';
+        }).join('') + '</div>';
       if (d.erros && d.erros.email) h += '<div class="faixa erro-f">' + ic('i-alerta') + '<div><b>Gmail:</b> ' + esc(d.erros.email) + '</div></div>';
       if (d.erros && d.erros.instagram) h += '<div class="faixa erro-f">' + ic('i-alerta') + '<div><b>Instagram:</b> ' + esc(d.erros.instagram) + '<br><button class="btn btn-linha" type="button" data-acao="ir" data-para="ajustes">Ver conexão</button></div></div>';
       if (d.gmail === false && (S.filtroMsg === 'email' || S.filtroMsg === 'todas')) h += '<div class="faixa">' + ic('i-email') + '<div><b>E-mail:</b> o Google não liberou a leitura do Gmail para o painel nesta conta. Os e-mails continuam chegando normalmente no Gmail.<br><a class="btn btn-linha" href="https://mail.google.com/" target="_blank" rel="noopener">Abrir o Gmail</a></div></div>';
       if (!d.instagram && (S.filtroMsg === 'instagram' || S.filtroMsg === 'todas')) h += '<div class="faixa">' + ic('i-instagram') + '<div>O Instagram ainda não está conectado.<br><button class="btn btn-amarelo" type="button" data-acao="ir" data-para="ajustes">Conectar</button></div></div>';
-      h += lista.length ? '<div class="lista">' + lista.map(itemMsg).join('') + '</div>' : vazio('i-chat', S.soPendentes ? 'Tudo respondido por aqui.' : 'Nenhuma mensagem nesse filtro.');
+      h += lista.length ? '<div class="lista">' + lista.map(itemMsg).join('') + '</div>' : vazio('i-chat', S.status === 'pend' ? 'Tudo respondido por aqui.' : 'Nenhuma mensagem nesse filtro.');
       h += '<div class="faixa" style="margin-top:18px">' + ic('i-whatsapp') + '<div><b>E o WhatsApp?</b> Seu WhatsApp pessoal não é lido aqui, para não arriscar o seu número. Quem pede orçamento pelo site aparece em <b>Site / WhatsApp</b>, porque essas pessoas são levadas direto para o seu WhatsApp. Quando você tiver um número só da empresa, dá para ligar ele aqui.</div></div>';
       conteudo.innerHTML = h;
       $$('[data-chip="msg"]').forEach(function (b) { b.addEventListener('click', function () { S.filtroMsg = b.dataset.v; VIEWS.mensagens.render(d); }); });
-      $('#so-pend').addEventListener('click', function () { S.soPendentes = !S.soPendentes; VIEWS.mensagens.render(d); });
+      $$('#conteudo [data-situ]').forEach(function (b) { b.addEventListener('click', function () { S.status = b.dataset.situ; VIEWS.mensagens.render(d); }); });
     }
   };
   function chip(grupo, v, txt, n, atual) {
@@ -599,7 +731,7 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
   }
   function abrirMensagem(m, naFolha) {
     if (!m) return;
-    if (!naFolha && (m.canal === 'instagram' || m.canal === 'chat')) return abrirChat(m);
+    if (!naFolha && (m.canal === 'instagram' || m.canal === 'chat' || m.canal === 'email')) return abrirChat(m);
     var h = '<h3 id="folha-titulo">' + esc(m.nome) + '</h3><div class="meta"><span>' + esc(CANAL_NOME[m.canal] || m.canal) + '</span>' + (m.contato ? '<span>' + esc(m.contato) + '</span>' : '') + '<span>' + completo(m.quando) + '</span>' + (m.qtd > 1 ? '<span>' + m.qtd + ' mensagens na conversa</span>' : '') + '</div>';
     var corpo = m.canal === 'chat' && m.historico && m.historico.length ? m.historico.map(function (x) { return (x.role === 'user' ? 'Visitante: ' : 'Atendente: ') + x.content; }).join('\n\n') : m.texto;
     h += '<div class="detalhe"><b>' + esc(m.assunto) + '</b>\n\n' + esc(corpo) + '</div>';
@@ -607,8 +739,8 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     h += '<div class="acoes">';
     if (m.canal === 'email') h += '<a class="btn btn-amarelo" href="' + esc(m.link) + '" target="_blank" rel="noopener">' + ic('i-email') + 'Responder no Gmail</a>';
     if (m.canal === 'site') h += '<p class="sub" style="margin:0">Essa pessoa preencheu o formulário do site e foi levada para o seu WhatsApp com a mensagem pronta. Procure pelo nome dela no WhatsApp.</p><a class="btn btn-amarelo" href="https://wa.me/" target="_blank" rel="noopener">' + ic('i-whatsapp') + 'Abrir o WhatsApp</a>';
-    if (m.contatoId) h += '<button class="btn btn-linha" type="button" id="ver-contato">' + ic('i-pessoas') + 'Ver no funil de contatos</button>';
-    else h += '<button class="btn btn-linha" type="button" id="virar-contato">' + ic('i-mais') + 'Salvar como contato</button>';
+    if (m.contatoId) h += '<button class="btn btn-linha" type="button" id="ver-contato">' + ic('i-pessoas') + 'Ver o cliente</button>';
+    else h += '<button class="btn btn-linha" type="button" id="virar-contato">' + ic('i-mais') + 'Cadastrar como cliente</button>';
     h += '</div>';
     abrirFolha(h);
     var vc = $('#ver-contato');
@@ -632,21 +764,37 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
   }
   function inicial(nome) { return (String(nome || '?').replace(/^@/, '').charAt(0) || '?').toUpperCase(); }
   function abrirChat(m) {
-    var ig = m.canal === 'instagram';
-    C = { m: m, ig: ig, msgs: [], cursor: '', mais: false, resp: null, pode: false, prazo: 0, timer: null };
+    var ig = m.canal === 'instagram', em = m.canal === 'email', larga = telaLarga(), jaAberto = !$('#chat').hidden;
+    if (C && C.timer) clearInterval(C.timer);
+    if (larga && S.aba !== 'mensagens') ir('mensagens');
+    C = { m: m, ig: ig, em: em, msgs: [], cursor: '', mais: false, resp: null, pode: false, prazo: 0, timer: null };
     $('#chat-av').className = 'av av-' + m.canal;
     $('#chat-av').innerHTML = esc(inicial(m.nome)) + '<span class="selo">' + ic(CANAL_ICONE[m.canal]) + '</span>';
     $('#chat-nome').textContent = m.nome;
-    $('#chat-sub').textContent = ig ? 'Instagram' : 'Chat do site · atendente virtual';
+    $('#chat-sub').textContent = ig ? 'Instagram' : em ? 'E-mail · ' + (m.contato || '') : 'Chat do site · atendente virtual';
     var ext = $('#chat-externo'); ext.hidden = !ig; if (ig) ext.href = m.link;
-    $('#chat-contato').setAttribute('aria-label', m.contatoId ? 'Ver no funil de contatos' : 'Salvar como contato');
     $('#chat-msgs').innerHTML = '<p class="chat-aviso" style="margin-top:30px">Carregando a conversa…</p>';
     $('#chat-pe').innerHTML = '';
-    focoAntes = document.activeElement;
+    if (!jaAberto) focoAntes = document.activeElement;
     $('#chat').hidden = false;
-    document.body.style.overflow = 'hidden';
-    try { history.pushState({ chat: 1 }, ''); } catch (e) {}
-    setTimeout(function () { $('#chat-voltar').focus(); }, 30);
+    $('#chat').setAttribute('aria-modal', larga ? 'false' : 'true');
+    $('#chat-voltar').setAttribute('aria-label', larga ? 'Fechar a conversa' : 'Voltar para a lista de chats');
+    $$('#conteudo .msg').forEach(function (b) { var x = S.msgs[+b.dataset.i]; var on = !!x && x.id === m.id && x.canal === m.canal; b.classList.toggle('aberta', on); if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+    if (!larga) {
+      document.body.style.overflow = 'hidden';
+      if (!jaAberto) { try { history.pushState({ chat: 1 }, ''); } catch (e) {} }
+      setTimeout(function () { $('#chat-voltar').focus(); }, 30);
+    }
+    desenharDossie();
+    if (em) {
+      api('emailConversa', { id: m.id }).then(function (r) {
+        if (!C || C.m !== m) return;
+        C.msgs = r.mensagens || []; C.assunto = r.assunto;
+        desenharMsgs(true); desenharPe({ podeResponder: true });
+        C.timer = setInterval(buscarNovas, 30000);
+      }, function (e) { $('#chat-msgs').innerHTML = '<p class="erro" style="text-align:center;margin-top:30px">' + esc(textoErro(e)) + '</p>'; });
+      return;
+    }
     if (!ig) {
       C.msgs = (m.historico || []).map(function (x, i) { return { id: 'h' + i, eu: x.role !== 'user', texto: x.content, quando: m.quando }; });
       if (!C.msgs.length) C.msgs = [{ id: 'h0', eu: false, texto: m.texto, quando: m.quando }];
@@ -663,15 +811,17 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
       $('#chat-msgs').innerHTML = '<p class="erro" style="text-align:center;margin-top:30px">' + esc(textoErro(e)) + '</p>';
     });
   }
-  function fecharChat() {
+  function fecharChat(semRecarregar) {
     if ($('#chat').hidden) return;
+    $$('#conteudo .msg.aberta').forEach(function (b) { b.classList.remove('aberta'); b.removeAttribute('aria-current'); });
     if (C && C.timer) clearInterval(C.timer);
     C = null;
     $('#chat').hidden = true; $('#chat-msgs').innerHTML = ''; $('#chat-pe').innerHTML = '';
+    $('#dossie').hidden = true;
     document.body.style.overflow = '';
     if (focoAntes && document.contains(focoAntes)) focoAntes.focus();
     focoAntes = null;
-    if (S.aba === 'mensagens' || S.aba === 'inicio') ir(S.aba);
+    if (!semRecarregar && (S.aba === 'mensagens' || S.aba === 'inicio')) ir(S.aba);
   }
   function voltarDoChat() { if (history.state && history.state.chat) history.back(); else fecharChat(); }
   window.addEventListener('popstate', function () { if (!$('#chat').hidden) { fecharFolha(); fecharChat(); } });
@@ -679,12 +829,13 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     var caixa = $('#chat-msgs'), h = '<div class="chat-in">', ultimoDia = '';
     if (C.mais) h += '<button type="button" class="chip mais-antigas" id="mais-antigas">Carregar mensagens antigas</button>';
     else if (C.ig) h += '<p class="chat-aviso">Início da conversa</p>';
+    else if (C.em && C.assunto) h += '<p class="chat-aviso"><b>Assunto:</b> ' + esc(C.assunto) + '</p>';
     C.msgs.forEach(function (x, i) {
       var dia = diaDe(x.quando);
       if (dia !== ultimoDia) { h += '<p class="dia">' + esc(dia) + '</p>'; ultimoDia = dia; }
       var cit = x.resp ? '<span class="cit"><b>' + (x.resp.eu ? 'Você' : esc(C.m.nome)) + '</b>' + esc(x.resp.texto) + '</span>' : '';
       h += '<div class="b-linha' + (x.eu ? ' eu' : '') + (C.resp && C.resp.id === x.id ? ' marcada' : '') + '" data-i="' + i + '">' +
-        '<div class="bolha2' + (x.enviando ? ' enviando' : '') + '">' + cit + esc(x.texto) + '<time>' + (x.enviando ? 'enviando…' : hm(x.quando)) + '</time></div>' +
+        '<div class="bolha2' + (x.enviando ? ' enviando' : '') + '">' + cit + esc(x.texto) + (x.erro ? '<span class="b-erro">Não enviado: ' + esc(x.erro) + '</span>' : '') + '<time>' + (x.enviando ? (C.em ? 'na fila · sai em até 1 min' : 'enviando…') : hm(x.quando)) + '</time></div>' +
         (C.ig && !x.enviando ? '<button type="button" class="b-resp" data-i="' + i + '" aria-label="Responder esta mensagem">' + ic('i-responder') + '</button>' : '') + '</div>';
     });
     h += '</div>';
@@ -721,8 +872,17 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     return novas.length > 0 || mudouResp;
   }
   function buscarNovas() {
-    if (!C || !C.ig || document.visibilityState !== 'visible') return;
+    if (!C || !(C.ig || C.em) || document.visibilityState !== 'visible') return;
     var m = C.m, caixa = $('#chat-msgs');
+    if (C.em) {
+      api('emailConversa', { id: m.id }).then(function (r) {
+        if (!C || C.m !== m) return;
+        var antes = JSON.stringify(C.msgs.map(function (x) { return [x.id, !!x.enviando, x.erro || '']; }));
+        var depois = JSON.stringify((r.mensagens || []).map(function (x) { return [x.id, !!x.enviando, x.erro || '']; }));
+        if (antes !== depois) { var perto = caixa.scrollHeight - caixa.scrollTop - caixa.clientHeight < 120; C.msgs = r.mensagens || []; desenharMsgs(perto); }
+      }, function () {});
+      return;
+    }
     api('igConversa', { id: m.id }).then(function (r) {
       if (!C || C.m !== m) return;
       var perto = caixa.scrollHeight - caixa.scrollTop - caixa.clientHeight < 120;
@@ -739,7 +899,7 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
       return;
     }
     pe.innerHTML = '<div class="cit-barra" id="cit-barra" hidden><div><b id="cit-quem"></b><span id="cit-txt"></span></div><button type="button" class="icone-btn" id="cit-x" aria-label="Cancelar resposta à mensagem">' + ic('i-x') + '</button></div>' +
-      '<form class="chat-form" id="chat-form" novalidate><textarea id="chat-txt" rows="1" maxlength="1000" placeholder="Mensagem" aria-label="Escreva sua mensagem"></textarea>' +
+      '<form class="chat-form" id="chat-form" novalidate><textarea id="chat-txt" rows="1" maxlength="' + (C.em ? 5000 : 1000) + '" placeholder="' + (C.em ? 'Escreva sua resposta por e-mail' : 'Mensagem') + '" aria-label="Escreva sua mensagem"></textarea>' +
       '<button class="enviar" type="submit" aria-label="Enviar">' + ic('i-enviar') + '</button></form>' +
       '<p class="erro chat-erro" id="chat-erro" role="alert"></p>';
     var txt = $('#chat-txt');
@@ -773,6 +933,22 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     marcarResp(null);
     desenharMsgs(true);
     bt.disabled = true;
+    if (C.em) {
+      api('emailResponder', { id: m.id, texto: texto }).then(function (r) {
+        if (!C || C.m !== m) return;
+        C.msgs = r.mensagens || []; desenharMsgs(true);
+        delete S.cache.mensagens; delete S.cache.inicio;
+        avisar('Resposta na fila: o e-mail sai em até 1 minuto.');
+      }, function (e) {
+        if (!C || C.m !== m) return;
+        C.msgs = C.msgs.filter(function (x) { return !x.enviando || String(x.id).indexOf('fila-') === 0; });
+        desenharMsgs(true);
+        var b2 = $('#chat-erro'), t2 = $('#chat-txt');
+        if (b2) b2.textContent = 'Não enviou: ' + textoErro(e);
+        if (t2) { t2.value = texto; t2.focus(); }
+      }).then(function () { var b = $('#chat-form .enviar'); if (b) b.disabled = false; });
+      return;
+    }
     api('igResponder', { id: m.id, texto: texto, resp: resp }).then(function (r) {
       if (!C || C.m !== m) return;
       (r.mensagens || []).forEach(function (x) { x.local = true; });
@@ -783,7 +959,8 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
       C.msgs = C.msgs.filter(function (x) { return !x.enviando; });
       desenharMsgs(true);
       var t = textoErro(e);
-      if (t.indexOf('JANELA_24H') >= 0) { desenharPe({ podeResponder: false }); avisar('Passou o prazo de 24 horas. Responda pelo Instagram.'); return; }
+      if (t.indexOf('JANELA_24H') >= 0 && !C.pode) { desenharPe({ podeResponder: false }); avisar('Passou o prazo de 24 horas. Responda pelo Instagram.'); return; }
+      if (t.indexOf('JANELA_24H') >= 0) t = 'o Instagram recusou a mensagem, mesmo dentro do prazo. Enquanto o app da Meta estiver em modo de desenvolvimento, ele só consegue mandar mensagem para contas testadoras do app. Detalhe: ' + t.split('|').slice(1).join('|');
       var b2 = $('#chat-erro'), t2 = $('#chat-txt');
       if (b2) b2.textContent = 'Não enviou: ' + t;
       if (t2) { t2.value = texto; t2.focus(); }
@@ -820,11 +997,80 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     });
   })();
   $('#chat-voltar').addEventListener('click', voltarDoChat);
-  $('#chat-contato').addEventListener('click', function () { if (C) contatoDoChat(C.m); });
-  function contatoDoChat(m) {
-    if (m.contatoId) carregarContatos().then(function () { abrirContato(S.contatos.filter(function (c) { return c.id === m.contatoId; })[0]); });
-    else abrirContato(null, { nome: m.nome.replace(/^@/, ''), contato: m.contato, canal: m.canal === 'instagram' ? 'Instagram' : 'Site', assunto: m.assunto === 'Direct do Instagram' ? '' : String(m.assunto || '').replace(/^Chat do site( · )?/, ''), mensagem: m.texto, ref: m.canal + ':' + m.id });
+  /* ───────── Dossiê do cliente (ao lado do chat) ───────── */
+  function clienteDoChat(m) {
+    var lista = S.contatos || [], ref = m.canal + ':' + m.id;
+    var arroba = String(m.contato || m.nome || '').toLowerCase();
+    return lista.filter(function (c) {
+      return c.id === m.contatoId || c.ref === ref ||
+        (m.canal === 'instagram' && c.instagram && c.instagram.toLowerCase() === arroba) ||
+        (m.canal === 'email' && c.email && c.email === String(m.contato || '').toLowerCase());
+    })[0] || null;
   }
+  function dossieAberto() { try { return localStorage.getItem('painel-dossie') !== 'fechado'; } catch (e) { return true; } }
+  function htmlDossie(m, c) {
+    var h = '<div class="dos-topo"><b>Dossiê</b><button type="button" class="icone-btn" data-dos-fechar aria-label="Fechar o dossiê">' + ic('i-x') + '</button></div>';
+    if (c) {
+      var zap = String(c.telefone || '').replace(/\D/g, '');
+      h += '<div class="dos-quem"><span class="av av-cli" aria-hidden="true">' + esc(inicial(c.nome)) + '</span><div><b>' + esc(c.nome) + '</b><span><span class="pill st-' + c.status + '">' + NOMES_ETAPA[c.status] + '</span> <span class="pill pg-' + (c.pago || 'nao') + '">' + NOMES_PAGO[c.pago || 'nao'] + '</span></span></div></div>';
+      h += '<dl class="dos-dados">' +
+        ['Serviço', c.servico || c.assunto, 'Valor', c.valor ? brl(c.valor) : '', 'CPF', c.cpf, 'Telefone', c.telefone ? (zap.length >= 10 ? '<a href="https://wa.me/55' + zap + '" target="_blank" rel="noopener">' + esc(c.telefone) + '</a>' : esc(c.telefone)) : '', 'E-mail', c.email, 'Instagram', c.instagram, 'Cliente desde', completo(c.quando)]
+          .reduce(function (s, v, i, a) { if (i % 2) return s; var val = a[i + 1]; return val ? s + '<dt>' + v + '</dt><dd>' + (v === 'Telefone' ? val : esc(val)) + '</dd>' : s; }, '') + '</dl>';
+      h += '<button class="btn btn-linha btn-cheio" type="button" data-dos-editar>' + ic('i-pessoas') + 'Editar cadastro</button>';
+    } else {
+      h += '<p class="sub" style="margin:4px 0 12px">Essa pessoa ainda não está cadastrada como cliente.</p><button class="btn btn-amarelo btn-cheio" type="button" data-dos-cadastrar>' + ic('i-mais') + 'Cadastrar como cliente</button>';
+    }
+    h += '<form class="dos-notas" data-dos-notas novalidate><label class="campo"><span>Anotações internas <small style="color:var(--suave);font-weight:500">(só você vê)</small></span><textarea name="obs" rows="6" maxlength="2000" placeholder="Ex.: pediu orçamento de loja; ligar na sexta à noite">' + esc(c ? c.obs : '') + '</textarea></label>' +
+      '<button class="btn btn-amarelo btn-cheio" type="submit">Salvar anotação</button></form>';
+    h += '<p class="sub dos-breve">Em breve: cobranças pelo Mercado Pago (Pix, cartão e boleto) aparecem aqui.</p>';
+    return h;
+  }
+  function ligarDossie(raiz, m, c) {
+    var fechar = raiz.querySelector('[data-dos-fechar]');
+    if (fechar) fechar.addEventListener('click', function () { if (raiz.id === 'dossie') { try { localStorage.setItem('painel-dossie', 'fechado'); } catch (e) {} desenharDossie(); } else fecharFolha(); });
+    var recarregarDos = function () { delete S.cache.contatos; carregarContatos().then(function () { if (C && C.m === m) desenharDossie(true); }); };
+    var ed = raiz.querySelector('[data-dos-editar]');
+    if (ed) ed.addEventListener('click', function () { abrirContato(c, null, recarregarDos); });
+    var cad = raiz.querySelector('[data-dos-cadastrar]');
+    if (cad) cad.addEventListener('click', function () {
+      abrirContato(null, { nome: String(m.nome || '').replace(/^@/, ''), canal: m.canal === 'email' ? 'E-mail' : m.canal === 'instagram' ? 'Instagram' : 'Site', instagram: m.canal === 'instagram' ? (m.contato || m.nome) : '', email: m.canal === 'email' ? m.contato : '', ref: m.canal + ':' + m.id, obs: (raiz.querySelector('[name=obs]') || {}).value || '' }, recarregarDos);
+    });
+    var f = raiz.querySelector('[data-dos-notas]');
+    if (f) f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bt = f.querySelector('[type=submit]'); bt.disabled = true; bt.textContent = 'Salvando…';
+      api('notasContato', { id: c ? c.id : '', obs: f.obs.value, nome: String(m.nome || '').replace(/^@/, ''), canal: m.canal === 'email' ? 'E-mail' : m.canal === 'instagram' ? 'Instagram' : 'Site', instagram: m.canal === 'instagram' ? (m.contato || m.nome) : '', email: m.canal === 'email' ? m.contato : '', contato: m.contato || '', ref: m.canal + ':' + m.id })
+        .then(function () { avisar(c ? 'Anotação salva.' : 'Anotação salva. A pessoa entrou em Clientes como interessada.'); recarregarDos(); },
+          function (er) { avisar(textoErro(er)); })
+        .then(function () { bt.disabled = false; bt.textContent = 'Salvar anotação'; });
+    });
+  }
+  function desenharDossie(jaCarregado) {
+    var aside = $('#dossie'), btn = $('#chat-contato');
+    if (!C) { aside.hidden = true; return; }
+    var m = C.m, larga = telaLarga(), aberto = larga && dossieAberto();
+    btn.setAttribute('aria-expanded', String(aberto));
+    document.body.classList.toggle('dossie-aberto', aberto);
+    aside.hidden = !aberto;
+    if (!aberto) return;
+    if (!jaCarregado && !S.cache.contatos) aside.innerHTML = '<p class="sub" style="padding:16px">Carregando o dossiê…</p>';
+    (S.cache.contatos ? Promise.resolve() : carregarContatos()).then(function () {
+      if (!C || C.m !== m) return;
+      var c = clienteDoChat(m);
+      aside.innerHTML = htmlDossie(m, c);
+      ligarDossie(aside, m, c);
+    }, function (e) { aside.innerHTML = '<p class="erro" style="padding:16px">' + esc(textoErro(e)) + '</p>'; });
+  }
+  $('#chat-contato').addEventListener('click', function () {
+    if (!C) return;
+    var m = C.m;
+    if (telaLarga()) { try { localStorage.setItem('painel-dossie', dossieAberto() ? 'fechado' : 'aberto'); } catch (e) {} desenharDossie(); return; }
+    carregarContatos().then(function () {
+      var c = clienteDoChat(m);
+      abrirFolha('<h3 id="folha-titulo" class="sr">Dossiê do cliente</h3>' + htmlDossie(m, c));
+      ligarDossie($('#folha-corpo'), m, c);
+    }, function (e) { avisar(textoErro(e)); });
+  });
 
   /* ───────── Contatos (funil) ───────── */
   function carregarContatos() {
@@ -839,63 +1085,89 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
       S.etapas.forEach(function (e) { cont[e] = 0; });
       S.contatos.forEach(function (c) { cont[c.status] = (cont[c.status] || 0) + 1; });
       bolinha('#bolinha-cont', cont.novo);
-      var lista = S.contatos.filter(function (c) { return S.filtroCont === 'todos' || c.status === S.filtroCont; });
-      var abertos = S.contatos.filter(function (c) { return c.status === 'orcamento'; }).reduce(function (s, c) { return s + (c.valor || 0); }, 0);
-      var h = '<div class="trio" style="margin-bottom:16px"><div class="cartao"><b>' + cont.novo + '</b><span>novos</span></div><div class="cartao"><b>' + (cont.conversando + cont.orcamento) + '</b><span>negociando</span></div><div class="cartao"><b>' + cont.fechado + '</b><span>fechados</span></div></div>';
-      if (abertos) h += '<p class="sub">Orçamentos enviados esperando resposta: <b style="color:var(--amarelo)">' + brl(abertos) + '</b></p>';
-      h += '<div class="chips" role="group" aria-label="Filtrar por etapa">' + chip('cont', 'todos', 'Todos', cont.todos);
+      var aReceber = S.contatos.filter(function (c) { return c.status === 'fechado' && c.pago !== 'sim'; }).reduce(function (s, c) { return s + (c.valor || 0); }, 0);
+      var h = '<div class="trio" style="margin-bottom:16px"><div class="cartao"><b>' + cont.fechado + '</b><span>clientes</span></div><div class="cartao"><b>' + (cont.novo + cont.conversando + cont.orcamento) + '</b><span>interessados</span></div><div class="cartao"><b>' + brl(aReceber) + '</b><span>a receber</span></div></div>';
+      h += '<label class="busca"><svg class="i" aria-hidden="true"><use href="#i-lupa"/></svg><input id="busca-cli" type="search" placeholder="Buscar por nome, CPF, telefone, e-mail ou @" value="' + esc(S.buscaCli || '') + '" autocomplete="off" aria-label="Buscar cliente"></label>';
+      h += '<div class="chips" role="group" aria-label="Filtrar por situação">' + chip('cont', 'todos', 'Todos', cont.todos);
       S.etapas.forEach(function (e) { h += chip('cont', e, NOMES_ETAPA[e], cont[e]); });
-      h += '</div>';
-      h += lista.length ? '<div class="lista">' + lista.map(function (c) {
-        return '<button type="button" class="msg" data-acao="contato" data-id="' + esc(c.id) + '"><span class="ic ic-' + canalClasse(c.canal) + '">' + ic(canalIcone(c.canal)) + '</span><span class="msg-corpo"><span class="msg-linha"><b>' + esc(c.nome) + '</b><time>' + relativo(c.atualizado || c.quando) + '</time></span><span class="msg-assunto">' + esc(c.assunto || c.canal) + '</span><span class="msg-texto"><span class="pill st-' + c.status + '">' + NOMES_ETAPA[c.status] + '</span>' + (c.valor ? ' &nbsp;' + brl(c.valor) : '') + '</span></span></button>';
-      }).join('') + '</div>' : vazio('i-pessoas', S.filtroCont === 'todos' ? 'Nenhum contato ainda. Toque no + para adicionar alguém que falou com você pelo WhatsApp, Instagram ou indicação.' : 'Ninguém nessa etapa.');
-      h += '<button class="fab" type="button" data-acao="novo-contato" aria-label="Novo contato">' + ic('i-mais') + '</button>';
+      h += '</div><div id="lista-cli"></div>';
+      h += '<button class="fab" type="button" data-acao="novo-contato" aria-label="Cadastrar cliente">' + ic('i-mais') + '</button>';
       conteudo.innerHTML = h;
+      function desenhar() {
+        var q = String(S.buscaCli || '').trim().toLowerCase(), qd = q.replace(/\D/g, '');
+        var lista = S.contatos.filter(function (c) {
+          if (S.filtroCont !== 'todos' && c.status !== S.filtroCont) return false;
+          if (!q) return true;
+          var txt = [c.nome, c.email, c.instagram, c.contato, c.servico, c.assunto].join(' ').toLowerCase();
+          var dig = [c.cpf, c.telefone, c.contato].join(' ').replace(/\D/g, '');
+          return txt.indexOf(q) >= 0 || (qd.length >= 3 && dig.indexOf(qd) >= 0);
+        });
+        $('#lista-cli').innerHTML = lista.length ? '<div class="lista">' + lista.map(function (c) {
+          var extra = [c.servico || c.assunto, c.telefone || c.instagram || c.email].filter(Boolean).map(esc).join(' · ');
+          return '<button type="button" class="msg" data-acao="contato" data-id="' + esc(c.id) + '"><span class="av av-cli" aria-hidden="true">' + esc(inicial(c.nome)) + '</span><span class="msg-corpo"><span class="msg-linha"><b>' + esc(c.nome) + '</b><time>' + relativo(c.atualizado || c.quando) + '</time></span>' +
+            (extra ? '<span class="msg-assunto">' + extra + '</span>' : '') +
+            '<span class="msg-texto"><span class="pill st-' + c.status + '">' + NOMES_ETAPA[c.status] + '</span>' + (c.valor ? ' &nbsp;' + brl(c.valor) : '') + (c.status === 'fechado' ? ' &nbsp;<span class="pill pg-' + (c.pago || 'nao') + '">' + NOMES_PAGO[c.pago || 'nao'] + '</span>' : '') + '</span></span></button>';
+        }).join('') + '</div>' : vazio('i-pessoas', q ? 'Ninguém encontrado com essa busca.' : S.filtroCont === 'todos' ? 'Nenhum cliente ainda. Toque no + para cadastrar.' : 'Ninguém nessa situação.');
+      }
+      desenhar();
+      $('#busca-cli').addEventListener('input', function (e) { S.buscaCli = e.target.value; desenhar(); });
       $$('[data-chip="cont"]').forEach(function (b) { b.addEventListener('click', function () { S.filtroCont = b.dataset.v; VIEWS.contatos.render(d); }); });
     }
   };
   function canalClasse(c) { return { 'E-mail': 'email', Instagram: 'instagram', Site: 'site', WhatsApp: 'whatsapp' }[c] || 'outro'; }
   function canalIcone(c) { return { 'E-mail': 'i-email', Instagram: 'i-instagram', Site: 'i-site', WhatsApp: 'i-whatsapp' }[c] || 'i-pessoas'; }
   function opcoes(lista, atual, nomes) { return lista.map(function (o) { return '<option value="' + esc(o) + '"' + (o === atual ? ' selected' : '') + '>' + esc(nomes ? nomes[o] : o) + '</option>'; }).join(''); }
+  function mascaraCpf(v) { var n = String(v || '').replace(/\D/g, '').slice(0, 11); return n.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3').replace(/(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4'); }
+  function mascaraTel(v) { var n = String(v || '').replace(/\D/g, '').slice(0, 11); if (n.length <= 2) return n; if (n.length <= 6) return '(' + n.slice(0, 2) + ') ' + n.slice(2); if (n.length <= 10) return '(' + n.slice(0, 2) + ') ' + n.slice(2, 6) + '-' + n.slice(6); return '(' + n.slice(0, 2) + ') ' + n.slice(2, 7) + '-' + n.slice(7); }
 
-  function abrirContato(c, pre) {
+  function abrirContato(c, pre, depois) {
     var novo = !c;
-    c = c || Object.assign({ canal: 'WhatsApp', status: 'novo' }, pre || {});
-    var link = linkContato(c.contato);
-    var h = '<h3 id="folha-titulo">' + (novo ? 'Novo contato' : esc(c.nome)) + '</h3>';
-    if (!novo) h += '<div class="meta"><span>Chegou ' + completo(c.quando) + '</span><span>Pelo ' + esc(c.canal) + '</span></div>';
-    if (link) h += '<a class="btn btn-amarelo btn-cheio" style="margin-top:14px" href="' + esc(link.href) + '" target="_blank" rel="noopener">' + ic(link.ic) + esc(link.txt) + '</a>';
+    c = c || Object.assign({ canal: 'WhatsApp', status: 'fechado', pago: 'nao' }, pre || {});
+    var h = '<h3 id="folha-titulo">' + (novo ? 'Cadastrar cliente' : esc(c.nome)) + '</h3>';
+    if (!novo) h += '<div class="meta"><span>Desde ' + completo(c.quando) + '</span><span>Veio pelo ' + esc(c.canal) + '</span></div>';
+    var zap = String(c.telefone || '').replace(/\D/g, '');
+    if (!novo && zap.length >= 10) h += '<a class="btn btn-amarelo btn-cheio" style="margin-top:14px" href="https://wa.me/55' + zap + '" target="_blank" rel="noopener">' + ic('i-whatsapp') + 'Chamar no WhatsApp</a>';
     h += '<form id="form-contato" novalidate style="margin-top:16px">' +
-      '<label class="campo"><span>Nome</span><input name="nome" value="' + esc(c.nome) + '" required autocomplete="off"></label>' +
-      '<label class="campo"><span>Etapa</span><select name="status">' + opcoes(S.etapas, c.status, NOMES_ETAPA) + '</select></label>' +
-      '<div class="lado"><label class="campo"><span>Veio pelo</span><select name="canal">' + opcoes(S.canais, c.canal) + '</select></label>' +
-      '<label class="campo"><span>Orçamento (R$)</span><input name="valor" inputmode="decimal" placeholder="0,00" value="' + esc(valorCampo(c.valor)) + '"></label></div>' +
-      '<label class="campo"><span>WhatsApp, @ ou e-mail</span><input name="contato" value="' + esc(c.contato) + '" placeholder="(21) 99999-9999" autocomplete="off"></label>' +
-      '<label class="campo"><span>O que a pessoa precisa</span><input name="assunto" value="' + esc(c.assunto) + '" placeholder="Ex.: site para confeitaria"></label>' +
-      (c.mensagem ? '<label class="campo"><span>Mensagem que ela mandou</span><textarea name="mensagem" rows="3">' + esc(c.mensagem) + '</textarea></label>' : '') +
-      '<label class="campo"><span>Suas anotações</span><textarea name="obs" rows="3" placeholder="Ex.: pediu para ligar sexta">' + esc(c.obs) + '</textarea></label>' +
+      '<label class="campo"><span>Nome completo</span><input name="nome" value="' + esc(c.nome) + '" required autocomplete="off"></label>' +
+      '<div class="lado"><label class="campo"><span>CPF</span><input name="cpf" inputmode="numeric" placeholder="000.000.000-00" value="' + esc(c.cpf) + '" autocomplete="off"></label>' +
+      '<label class="campo"><span>Telefone / WhatsApp</span><input name="telefone" inputmode="tel" placeholder="(21) 99999-9999" value="' + esc(c.telefone) + '" autocomplete="off"></label></div>' +
+      '<div class="lado"><label class="campo"><span>E-mail</span><input name="email" type="email" inputmode="email" value="' + esc(c.email) + '" autocomplete="off"></label>' +
+      '<label class="campo"><span>Instagram</span><input name="instagram" placeholder="@usuario" value="' + esc(c.instagram) + '" autocomplete="off"></label></div>' +
+      '<div class="lado"><label class="campo"><span>Situação</span><select name="status">' + opcoes(S.etapas, c.status, NOMES_ETAPA) + '</select></label>' +
+      '<label class="campo"><span>Veio pelo</span><select name="canal">' + opcoes(S.canais, c.canal) + '</select></label></div>' +
+      '<label class="campo"><span>Serviço contratado</span><input name="servico" list="lista-servicos" value="' + esc(c.servico || c.assunto) + '" placeholder="Ex.: Loja virtual"><datalist id="lista-servicos">' + SERVICOS.map(function (s) { return '<option value="' + esc(s) + '">'; }).join('') + '</datalist></label>' +
+      '<div class="lado"><label class="campo"><span>Valor (R$)</span><input name="valor" inputmode="decimal" placeholder="0,00" value="' + esc(valorCampo(c.valor)) + '"></label>' +
+      '<label class="campo"><span>Pagamento</span><select name="pago">' + opcoes(['nao', 'parcial', 'sim'], c.pago || 'nao', NOMES_PAGO) + '</select></label></div>' +
+      (c.mensagem ? '<label class="campo"><span>Primeira mensagem dele</span><textarea name="mensagem" rows="2">' + esc(c.mensagem) + '</textarea></label>' : '') +
+      '<label class="campo"><span>Anotações internas <small style="color:var(--suave);font-weight:500">(só você vê)</small></span><textarea name="obs" rows="4" placeholder="Ex.: quer o site pronto até o Natal; prefere falar à noite">' + esc(c.obs) + '</textarea></label>' +
       '<p class="erro" id="cont-erro" role="alert"></p>' +
-      '<div class="acoes"><button class="btn btn-amarelo" type="submit">' + (novo ? 'Salvar contato' : 'Salvar mudanças') + '</button>' +
-      (novo ? '' : '<button class="btn btn-perigo" type="button" id="apagar-cont">Apagar contato</button>') + '</div></form>';
+      '<div class="acoes"><button class="btn btn-amarelo" type="submit">' + (novo ? 'Cadastrar cliente' : 'Salvar mudanças') + '</button>' +
+      (novo ? '' : '<button class="btn btn-perigo" type="button" id="apagar-cont">Apagar cadastro</button>') + '</div></form>';
     abrirFolha(h);
     var f = $('#form-contato');
+    f.cpf.addEventListener('input', function () { f.cpf.value = mascaraCpf(f.cpf.value); });
+    f.telefone.addEventListener('input', function () { f.telefone.value = mascaraTel(f.telefone.value); });
     f.addEventListener('submit', function (ev) {
       ev.preventDefault();
-      var d = { id: c.id || '', ref: c.ref || '', nome: f.nome.value, status: f.status.value, canal: f.canal.value, valor: lerValor(f.valor.value), contato: f.contato.value, assunto: f.assunto.value, mensagem: f.mensagem ? f.mensagem.value : (c.mensagem || ''), obs: f.obs.value };
+      var d = { id: c.id || '', ref: c.ref || '', nome: f.nome.value, status: f.status.value, canal: f.canal.value, valor: lerValor(f.valor.value), contato: c.contato || '', assunto: c.assunto || '', mensagem: f.mensagem ? f.mensagem.value : (c.mensagem || ''), obs: f.obs.value,
+        cpf: f.cpf.value, telefone: f.telefone.value, email: f.email.value, instagram: f.instagram.value, servico: f.servico.value, pago: f.pago.value };
       if (!d.nome.trim()) { $('#cont-erro').textContent = 'Coloque o nome.'; f.nome.focus(); return; }
+      var cpfN = d.cpf.replace(/\D/g, '');
+      if (cpfN && cpfN.length !== 11) { $('#cont-erro').textContent = 'O CPF precisa ter 11 números.'; f.cpf.focus(); return; }
       var btn = f.querySelector('[type=submit]'); btn.disabled = true; btn.textContent = 'Salvando…';
       api('salvarContato', d).then(function (salvo) {
         delete S.cache.contatos; delete S.cache.inicio; delete S.cache.mensagens;
         fecharFolha();
-        if (S.aba === 'contatos' || S.aba === 'mensagens' || S.aba === 'inicio') recarregar();
-        var virouFechado = d.status === 'fechado' && c.status !== 'fechado' && d.valor > 0;
-        if (virouFechado) avisar('Contato fechado!', 'Lançar ' + brl(d.valor), function () { abrirLancamento(null, { tipo: 'entrada', valor: d.valor, cliente: d.nome, canal: d.canal, descricao: d.assunto || ('Projeto ' + d.nome), status: 'pendente' }); });
-        else avisar(novo ? 'Contato salvo.' : 'Mudanças salvas.');
+        if (depois) depois(salvo);
+        else if (S.aba === 'contatos' || S.aba === 'inicio') recarregar();
+        var virouCliente = d.status === 'fechado' && c.status !== 'fechado' && d.valor > 0;
+        if (virouCliente || (novo && d.status === 'fechado' && d.valor > 0)) avisar('Cliente salvo!', 'Lançar ' + brl(d.valor), function () { abrirLancamento(null, { tipo: 'entrada', valor: d.valor, cliente: d.nome, canal: d.canal, descricao: d.servico || ('Projeto ' + d.nome), status: d.pago === 'sim' ? 'pago' : 'pendente' }); });
+        else avisar(novo ? 'Cliente cadastrado.' : 'Mudanças salvas.');
       }).catch(function (e) { $('#cont-erro').textContent = textoErro(e); btn.disabled = false; btn.textContent = 'Tentar de novo'; });
     });
     var ap = $('#apagar-cont');
     if (ap) confirmarDuplo(ap, 'Toque de novo para apagar', function () {
-      return api('apagarContato', { id: c.id }).then(function () { delete S.cache.contatos; delete S.cache.inicio; fecharFolha(); recarregar(); avisar('Contato apagado.'); });
+      return api('apagarContato', { id: c.id }).then(function () { delete S.cache.contatos; delete S.cache.inicio; fecharFolha(); if (depois) depois(null); else recarregar(); avisar('Cadastro apagado.'); });
     });
   }
 
@@ -916,13 +1188,17 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
       var h = '<div class="seg" role="group" aria-label="Período">' + [7, 30, 90].map(function (d) { return '<button type="button" data-dias="' + d + '" aria-pressed="' + (S.dias === d) + '">' + d + ' dias</button>'; }).join('') + '</div>';
       if (!m.temColeta) h += '<div class="faixa">' + ic('i-site') + '<div>Ainda não chegou nenhuma visita. Assim que alguém abrir o site, os números começam a aparecer aqui.</div></div>';
       h += '<div class="grade">' +
-        kpiFixo('i-site', 'Visitas no site', num(m.visitas), delta(m.visitas, m.visitasAnt)) +
-        kpiFixo('i-grafico', 'Páginas vistas', num(m.vistas), m.visitas ? (Math.round(m.vistas / m.visitas * 10) / 10).toString().replace('.', ',') + ' por visita' : '—') +
+        kpiFixo('i-site', 'Pessoas no site', num(m.visitas), delta(m.visitas, m.visitasAnt)) +
+        kpiFixo('i-grafico', 'Páginas vistas', num(m.vistas), m.visitas ? (Math.round(m.vistas / m.visitas * 10) / 10).toString().replace('.', ',') + ' por pessoa' : '—') +
         kpiFixo('i-whatsapp', 'Interessados', num(m.interessados), delta(m.interessados, m.interessadosAnt)) +
         kpiFixo('i-pessoas', 'Conversão', String(m.conversao).replace('.', ',') + '%', 'das visitas viram contato') +
         '</div>';
-      h += '<h2>Visitas por dia <small>últimos ' + m.dias + ' dias</small></h2><div class="cartao">' + graficoDias(m.porDia) + '</div>';
+      h += '<h2>Pessoas novas por dia <small>últimos ' + m.dias + ' dias</small></h2><div class="cartao">' + graficoDias(m.porDia) + '</div>';
       h += '<h2>De onde vieram</h2><div class="cartao">' + medidores(m.origens, num, 'Ainda sem visitas.') + '</div>';
+      h += '<h2>Links para posts e stories</h2><div class="cartao"><p class="sub" style="margin:0">Crie um link para cada post, story ou para a bio. Quem tocar vai direto para o seu WhatsApp, com a mensagem já dizendo de onde veio. Aqui embaixo aparece quantas pessoas cada link levou (cada pessoa conta uma vez).</p>' +
+        '<form id="form-link" class="linha-link" novalidate><input name="nome" maxlength="40" placeholder="Ex.: post barbearia" aria-label="Nome do post ou story"><button class="btn btn-amarelo" type="submit">Criar link</button></form>' +
+        '<div class="link-pronto" id="link-pronto" hidden><code id="link-txt"></code><button class="btn btn-linha" type="button" id="link-copiar">Copiar</button></div>' +
+        medidores(m.links || [], num, 'Nenhum link foi usado ainda.') + '</div>';
       h += '<h2>O que fizeram no site</h2><div class="trio"><div class="cartao"><b>' + num(m.cliques.whatsapp) + '</b><span>cliques no WhatsApp</span></div><div class="cartao"><b>' + num(m.pedidos) + '</b><span>formulários enviados</span></div><div class="cartao"><b>' + num(m.cliques.instagram + m.cliques.email) + '</b><span>cliques Insta / e-mail</span></div></div>';
       h += '<p class="sub" style="margin:10px 0 0">' + num(m.chats || 0) + (m.chats === 1 ? ' conversa' : ' conversas') + ' com o atendente virtual do site.</p>';
       if (m.quiz.length) h += '<h2>Teste “Qual site eu preciso?”</h2><div class="cartao">' + medidores(m.quiz.map(function (q) { return { nome: QUIZ[q.nome] || q.nome, valor: q.valor }; }), num) + '</div>';
@@ -938,11 +1214,49 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
           kpiFixo('i-grafico', 'Alcance de ontem', ult && ult.alcance ? num(ult.alcance) : '—', ult && ult.visitasPerfil ? num(ult.visitasPerfil) + ' visitas ao perfil' : 'contas que viram') + '</div>';
         if (s.length > 1) h += '<div class="cartao" style="margin-top:12px">' + graficoLinha(s) + '</div>';
         else h += '<p class="sub" style="margin-top:10px">O gráfico de seguidores vai se formando: o painel anota os números todo dia às 7h.</p>';
+        h += '<h2>Posts <small>curtidas, comentários e visualizações</small></h2><div id="ig-posts"><p class="sub" style="margin:0">Carregando os posts…</p></div>';
       }
       conteudo.innerHTML = h;
+      ligarLinks(); carregarPosts();
       $$('[data-dias]').forEach(function (b) { b.addEventListener('click', function () { S.dias = +b.dataset.dias; ir('marketing'); }); });
     }
   };
+  /* Links de post/story que levam ao WhatsApp */
+  function slugLink(t) { return String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40); }
+  function ligarLinks() {
+    var f = $('#form-link'); if (!f) return;
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var s = slugLink(f.nome.value);
+      if (!s) { f.nome.focus(); return; }
+      var url = 'https://brazukaweb.github.io/zap.html?de=' + s;
+      $('#link-txt').textContent = url; $('#link-pronto').hidden = false;
+      $('#link-copiar').onclick = function () {
+        (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function () { avisar('Link copiado. Cole na legenda, no story ou na bio.'); }, function () { avisar('Selecione o link e copie.'); });
+      };
+    });
+  }
+  /* Posts do Instagram com curtidas, comentários e visualizações */
+  function carregarPosts(forcar) {
+    var caixa = $('#ig-posts'); if (!caixa) return;
+    if (S.cache.igPosts && !forcar) desenharPosts(S.cache.igPosts);
+    api('igPosts', { atualizar: !!forcar }).then(function (r) { S.cache.igPosts = r; if (S.aba === 'marketing') desenharPosts(r); },
+      function (e) { var c = $('#ig-posts'); if (c && !S.cache.igPosts) c.innerHTML = '<p class="sub" style="margin:0">' + esc(textoErro(e)) + '</p>'; });
+  }
+  function desenharPosts(r) {
+    var caixa = $('#ig-posts'); if (!caixa) return;
+    if (!r.posts || !r.posts.length) { caixa.innerHTML = '<p class="sub" style="margin:0">Nenhum post publicado ainda.</p>'; return; }
+    var tot = r.posts.reduce(function (s, p) { s.c += p.curtidas; s.m += p.comentarios; s.v += p.views || 0; return s; }, { c: 0, m: 0, v: 0 });
+    caixa.innerHTML = '<p class="sub" style="margin:0 0 10px">Últimos ' + r.posts.length + ' posts: ' + num(tot.c) + ' curtidas · ' + num(tot.m) + ' comentários' + (r.semViews ? '' : ' · ' + num(tot.v) + ' visualizações') + '</p>' +
+      '<div class="posts">' + r.posts.map(function (p) {
+        return '<a class="post" href="' + esc(p.link) + '" target="_blank" rel="noopener" aria-label="Abrir ' + esc(p.tipo.toLowerCase()) + ' de ' + esc(completo(p.quando)) + ' no Instagram">' +
+          '<span class="post-img">' + (p.imagem ? '<img src="' + esc(p.imagem) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : '') + '<span>' + esc(p.tipo) + '</span></span>' +
+          '<span class="post-info"><time datetime="' + esc(p.quando) + '">' + esc(completo(p.quando)) + '</time>' +
+          '<span class="post-leg">' + (esc(p.legenda) || '<i>Sem legenda</i>') + '</span>' +
+          '<span class="post-num"><span title="Curtidas">' + ic('i-coracao') + num(p.curtidas) + '</span><span title="Comentários">' + ic('i-chat') + num(p.comentarios) + '</span><span title="Visualizações">' + ic('i-olho') + (p.views == null ? '—' : num(p.views)) + '</span></span></span></a>';
+      }).join('') + '</div>' +
+      (r.semViews ? '<p class="sub" style="margin:10px 0 0">As visualizações (o olhinho) aparecem quando a Meta liberar a permissão de métricas do Instagram para o app. Curtidas e comentários já funcionam.</p>' : '');
+  }
   function kpiFixo(icone, rot, numero, det) { return '<div class="cartao kpi"><span class="rot">' + ic(icone) + esc(rot) + '</span><span class="num">' + esc(numero) + '</span><span class="det">' + det + '</span></div>'; }
   function nomePagina(p) { return { '/': 'Página inicial', '/index.html': 'Página inicial', '/politica-de-privacidade.html': 'Política de privacidade' }[p] || p; }
   function medidores(lista, fmt, vazioTxt) {
@@ -1193,10 +1507,10 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
 
   /* Atualiza sozinho a cada 2 minutos quando o painel está aberto */
   setInterval(function () {
-    if (document.visibilityState === 'visible' && !$('#painel').hidden && $('#folha').hidden && $('#chat').hidden && (S.aba === 'inicio' || S.aba === 'mensagens')) ir(S.aba);
+    if (document.visibilityState === 'visible' && !$('#painel').hidden && $('#folha').hidden && ($('#chat').hidden || telaLarga()) && (S.aba === 'inicio' || S.aba === 'mensagens')) ir(S.aba);
   }, 120000);
   document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'visible' && !$('#painel').hidden && $('#folha').hidden && $('#chat').hidden && S.token) ir(S.aba);
+    if (document.visibilityState === 'visible' && !$('#painel').hidden && $('#folha').hidden && ($('#chat').hidden || telaLarga()) && S.token) ir(S.aba);
   });
 
   /* Começo */

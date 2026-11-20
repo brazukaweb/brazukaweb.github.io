@@ -6,8 +6,11 @@
   var PAINEL = 'https://script.google.com/macros/s/AKfycbxdlAuBtzuCv0gpWlvYNloR23rr-718bj-obcPDkAfJBi-4J-8PKAYv97gXhYuex7Y/exec';
   var celular = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
   var naoRastrear = navigator.doNotTrack === '1' || window.doNotTrack === '1';
+  // Aparelho do dono (abriu o painel neste navegador) ou cópia de teste: não conta nada.
+  var dono = location.protocol === 'file:' || /^(localhost|127\.)/.test(location.hostname);
+  try { if (localStorage.getItem('bzk_dono') === '1') dono = true; } catch (e) {}
   function registrar(tipo, dados) {
-    if (!PAINEL || !navigator.sendBeacon) return;
+    if (!PAINEL || !navigator.sendBeacon || dono) return;
     if (naoRastrear && tipo !== 'lead') return;
     var d = dados || {};
     d.tipo = tipo;
@@ -31,7 +34,9 @@
   }
   (function () {
     var nova = true;
-    try { nova = !sessionStorage.getItem('bzk_visita'); sessionStorage.setItem('bzk_visita', '1'); } catch (e) {}
+    // Cada pessoa conta uma vez só: o navegador lembra que já foi contado (nada é enviado que identifique a pessoa).
+    try { nova = !localStorage.getItem('bzk_pessoa'); localStorage.setItem('bzk_pessoa', '1'); }
+    catch (e) { try { nova = !sessionStorage.getItem('bzk_visita'); sessionStorage.setItem('bzk_visita', '1'); } catch (e2) {} }
     registrar('visita', { nova: nova, origem: nova ? origemDaVisita() : '' });
   })();
   document.addEventListener('click', function (ev) {
