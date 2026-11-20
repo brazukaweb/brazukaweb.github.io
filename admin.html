@@ -181,7 +181,7 @@ h2 small{font-family:var(--texto);font-size:13px;font-weight:500;color:var(--sua
 .fab svg{width:26px;height:26px;stroke-width:2.5}
 
 /* Folha (janela de baixo) */
-.folha{position:fixed;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.folha{position:fixed;inset:0;z-index:28;display:flex;align-items:flex-end;justify-content:center}
 .folha-fundo{position:absolute;inset:0;background:rgba(3,20,14,.6);animation:aparece .2s}
 .folha-caixa{position:relative;width:100%;max-width:640px;max-height:92vh;max-height:92dvh;overflow-y:auto;background:var(--verde2);border-radius:24px 24px 0 0;padding:8px 18px calc(22px + env(safe-area-inset-bottom));animation:sobe .25s ease-out;overscroll-behavior:contain}
 .folha-alca{width:42px;height:5px;border-radius:3px;background:var(--linha);margin:4px auto 14px}
@@ -189,12 +189,53 @@ h2 small{font-family:var(--texto);font-size:13px;font-weight:500;color:var(--sua
 .folha .fechar{position:absolute;top:12px;right:10px}
 .folha .acoes{display:flex;flex-direction:column;gap:10px;margin-top:18px}
 .folha .lado{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.conversa{display:flex;flex-direction:column;gap:8px;background:var(--verde);border-radius:14px;padding:12px;margin:14px 0;max-height:46vh;overflow-y:auto}
-.bolha{align-self:flex-start;max-width:85%;background:var(--verde2);border-radius:16px 16px 16px 4px;padding:9px 12px;font-size:15px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
-.bolha.eu{align-self:flex-end;background:var(--amarelo);color:#0E3B2C;border-radius:16px 16px 4px 16px}
-.bolha time{display:block;font-size:11px;opacity:.7;margin-top:3px}
-.aviso-ig{font-size:13.5px;line-height:1.45;color:var(--off);border:1px solid var(--amarelo);border-radius:12px;padding:10px 12px;margin-top:4px}
-.prazo-ig{margin:2px 0 0;font-size:12.5px;text-align:center}
+/* Tela de conversa */
+.chat{position:fixed;inset:0;z-index:25;display:flex;flex-direction:column;background:var(--verde)}
+.chat-topo{display:flex;align-items:center;gap:8px;padding:8px 8px;padding-top:calc(8px + env(safe-area-inset-top));background:var(--verde2);border-bottom:1px solid var(--linha)}
+.av{position:relative;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;font-family:var(--titulo);font-weight:700;font-size:17px;background:rgba(245,155,208,.18);color:var(--rosa)}
+.av-chat,.av-site{background:rgba(127,220,164,.16);color:var(--verdeok)}
+.av-email{background:rgba(140,184,255,.16);color:var(--azul)}
+.av .selo{position:absolute;right:-4px;bottom:-4px;width:19px;height:19px;border-radius:50%;background:var(--verde2);display:grid;place-items:center;border:1.5px solid var(--verde)}
+.av .selo svg{width:11px;height:11px}
+.chat-quem{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.chat-quem b{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-quem span{font-size:12.5px;color:var(--suave)}
+.chat-msgs{flex:1;overflow-y:auto;padding:10px 10px 8px;overscroll-behavior:contain}
+.chat-in{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:3px}
+.dia{align-self:center;font-size:12px;font-weight:600;color:var(--cinza);background:var(--verde2);padding:4px 11px;border-radius:8px;margin:10px 0 6px}
+.mais-antigas{align-self:center;margin:4px 0 8px}
+.b-linha{display:flex;align-items:center;gap:4px}
+.b-linha.eu{flex-direction:row-reverse}
+.bolha2{max-width:78%;background:var(--verde2);border-radius:14px 14px 14px 4px;padding:7px 10px 6px;font-size:15px;line-height:1.4;white-space:pre-wrap;overflow-wrap:anywhere;transition:transform .15s}
+.eu .bolha2{background:var(--amarelo);color:#0E3B2C;border-radius:14px 14px 4px 14px}
+.bolha2.enviando{opacity:.6}
+.bolha2 time{float:right;font-size:11px;opacity:.7;margin:7px 0 0 10px;line-height:1}
+.b-linha.marcada .bolha2{box-shadow:0 0 0 2px var(--off)}
+.b-resp{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:var(--cinza);opacity:.4;flex:none}
+.b-resp svg{width:17px;height:17px}
+.b-resp:hover,.b-resp:focus-visible,.b-linha:hover .b-resp{opacity:1}
+.b-resp:hover{background:var(--verde2)}
+.cit{display:block;border-left:3px solid var(--rosa);background:rgba(0,0,0,.16);border-radius:8px;padding:5px 8px;margin-bottom:5px;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cit b{display:block;font-size:12px}
+.eu .cit{border-left-color:#0E3B2C;background:rgba(14,59,44,.12)}
+.chat-pe{background:var(--verde2);border-top:1px solid var(--linha);padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+.chat-pe>*{max-width:760px;margin-left:auto;margin-right:auto}
+.chat-aviso{font-size:13.5px;line-height:1.45;color:var(--cinza);text-align:center;margin:4px auto 8px}
+.cit-barra{display:flex;align-items:center;gap:6px;border-left:3px solid var(--amarelo);background:var(--verde);border-radius:10px;padding:4px 4px 4px 10px;margin-bottom:8px}
+.cit-barra[hidden]{display:none}
+.cit-barra div{flex:1;min-width:0}
+.cit-barra b{display:block;font-size:12.5px;color:var(--amarelo)}
+.cit-barra span{display:block;font-size:13.5px;color:var(--cinza);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-form{display:flex;align-items:flex-end;gap:8px}
+.chat-form textarea{flex:1;resize:none;background:var(--verde);border:1.5px solid var(--linha);border-radius:22px;padding:11px 16px;font-size:16px;line-height:1.35;min-height:46px;max-height:140px}
+.chat-form textarea:focus{border-color:var(--amarelo);outline:none}
+.enviar{width:46px;height:46px;border-radius:50%;background:var(--amarelo);color:#0E3B2C;display:grid;place-items:center;flex:none}
+.enviar:disabled{opacity:.5}
+.enviar svg{width:20px;height:20px}
+.enviar:focus-visible,.b-resp:focus-visible{outline:3px solid var(--off);outline-offset:2px}
+.chat-erro{margin:6px auto 0;min-height:0}
+.msg .av{width:44px;height:44px}
+.msg-texto .voce{color:var(--suave)}
 .detalhe{background:var(--verde);border-radius:14px;padding:14px;margin:14px 0;line-height:1.55;font-size:15px;white-space:pre-wrap;overflow-wrap:anywhere}
 .meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--cinza);margin-top:6px}
 .passos{padding-left:20px;line-height:1.6;font-size:14px;color:var(--cinza)}
@@ -235,6 +276,8 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
   <symbol id="i-sair" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
   <symbol id="i-externo" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
   <symbol id="i-cadeado" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-enviar" viewBox="0 0 24 24"><path d="M21 3 3 10.5l7.5 3L13.5 21z"/><path d="m10.5 13.5 4.5-4.5"/></symbol>
+  <symbol id="i-responder" viewBox="0 0 24 24"><path d="M9 6 3.5 11.5 9 17"/><path d="M4 11.5h10a6.5 6.5 0 0 1 6.5 6.5v1"/></symbol>
 </svg>
 
 <section id="tela-login" class="login" hidden>
@@ -275,6 +318,18 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     <button class="icone-btn fechar" type="button" data-fechar aria-label="Fechar"><svg class="i"><use href="#i-x"/></svg></button>
     <div id="folha-corpo"></div>
   </div>
+</div>
+
+<div id="chat" class="chat" role="dialog" aria-modal="true" aria-labelledby="chat-nome" hidden>
+  <header class="chat-topo">
+    <button class="icone-btn" id="chat-voltar" type="button" aria-label="Voltar para a lista de chats"><svg class="i"><use href="#i-seta-e"/></svg></button>
+    <span class="av" id="chat-av" aria-hidden="true"></span>
+    <div class="chat-quem"><b id="chat-nome"></b><span id="chat-sub"></span></div>
+    <a class="icone-btn" id="chat-externo" href="#" target="_blank" rel="noopener" aria-label="Abrir no Instagram" title="Abrir no Instagram"><svg class="i"><use href="#i-externo"/></svg></a>
+    <button class="icone-btn" id="chat-contato" type="button" aria-label="Salvar como contato" title="Contato"><svg class="i"><use href="#i-pessoas"/></svg></button>
+  </header>
+  <div class="chat-msgs" id="chat-msgs" aria-live="polite"></div>
+  <div class="chat-pe" id="chat-pe"></div>
 </div>
 
 <div id="toast" class="toast" role="status" aria-live="polite"><span id="toast-txt"></span><button type="button" id="toast-acao" hidden></button></div>
@@ -506,9 +561,12 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
   /* ───────── Mensagens ───────── */
   function itemMsg(m, i) {
     return '<button type="button" class="msg' + (m.pendente ? ' pendente' : '') + '" data-acao="msg" data-i="' + i + '">' +
-      '<span class="ic ic-' + m.canal + '">' + ic(CANAL_ICONE[m.canal] || 'i-chat') + '</span>' +
+      (m.canal === 'instagram' || m.canal === 'chat'
+        ? '<span class="av av-' + m.canal + '" aria-hidden="true">' + esc(inicial(m.nome)) + '<span class="selo">' + ic(CANAL_ICONE[m.canal]) + '</span></span>'
+        : '<span class="ic ic-' + m.canal + '">' + ic(CANAL_ICONE[m.canal] || 'i-chat') + '</span>') +
       '<span class="msg-corpo"><span class="msg-linha"><b>' + esc(m.nome) + '</b><time datetime="' + esc(m.quando) + '">' + relativo(m.quando) + '</time></span>' +
-      '<span class="msg-assunto">' + esc(m.assunto) + '</span><span class="msg-texto">' + esc(m.texto) + '</span></span>' +
+      (m.canal === 'instagram' ? '' : '<span class="msg-assunto">' + esc(m.assunto) + '</span>') +
+      '<span class="msg-texto">' + (m.eu ? '<span class="voce">Você: </span>' : '') + esc(m.texto) + '</span></span>' +
       (m.pendente ? '<span class="ponto"><span class="sr">Esperando resposta</span></span>' : '') + '</button>';
   }
   VIEWS.mensagens = {
@@ -538,23 +596,20 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     var on = grupo === 'msg' ? S.filtroMsg === v : S.filtroCont === v;
     return '<button type="button" class="chip" data-chip="' + grupo + '" data-v="' + v + '" aria-pressed="' + on + '">' + esc(txt) + (n != null ? ' <span class="n">' + n + '</span>' : '') + '</button>';
   }
-  function abrirMensagem(m) {
+  function abrirMensagem(m, naFolha) {
     if (!m) return;
+    if (!naFolha && (m.canal === 'instagram' || m.canal === 'chat')) return abrirChat(m);
     var h = '<h3 id="folha-titulo">' + esc(m.nome) + '</h3><div class="meta"><span>' + esc(CANAL_NOME[m.canal] || m.canal) + '</span>' + (m.contato ? '<span>' + esc(m.contato) + '</span>' : '') + '<span>' + completo(m.quando) + '</span>' + (m.qtd > 1 ? '<span>' + m.qtd + ' mensagens na conversa</span>' : '') + '</div>';
     var corpo = m.canal === 'chat' && m.historico && m.historico.length ? m.historico.map(function (x) { return (x.role === 'user' ? 'Visitante: ' : 'Atendente: ') + x.content; }).join('\n\n') : m.texto;
-    if (m.canal === 'instagram') h += '<div class="conversa" id="ig-conversa" aria-live="polite"><p class="sub">Carregando a conversa…</p></div>' +
-      '<form id="form-resp" novalidate><label class="campo"><span>Sua resposta</span><textarea name="texto" rows="3" maxlength="1000" placeholder="Escreva aqui e toque em Enviar"></textarea></label><p class="erro" id="resp-erro" role="alert"></p><button class="btn btn-amarelo btn-cheio" type="submit">' + ic('i-instagram') + 'Enviar resposta</button></form>';
-    else h += '<div class="detalhe"><b>' + esc(m.assunto) + '</b>\n\n' + esc(corpo) + '</div>';
+    h += '<div class="detalhe"><b>' + esc(m.assunto) + '</b>\n\n' + esc(corpo) + '</div>';
     if (m.canal === 'chat') h += '<p class="sub" style="margin:0">Conversa com o atendente virtual do site. Se a pessoa foi para o WhatsApp, procure pelo nome dela lá.</p>';
     h += '<div class="acoes">';
     if (m.canal === 'email') h += '<a class="btn btn-amarelo" href="' + esc(m.link) + '" target="_blank" rel="noopener">' + ic('i-email') + 'Responder no Gmail</a>';
-    if (m.canal === 'instagram') h += '<a class="btn btn-linha" href="' + esc(m.link) + '" target="_blank" rel="noopener">' + ic('i-instagram') + 'Abrir no Instagram</a>';
     if (m.canal === 'site') h += '<p class="sub" style="margin:0">Essa pessoa preencheu o formulário do site e foi levada para o seu WhatsApp com a mensagem pronta. Procure pelo nome dela no WhatsApp.</p><a class="btn btn-amarelo" href="https://wa.me/" target="_blank" rel="noopener">' + ic('i-whatsapp') + 'Abrir o WhatsApp</a>';
     if (m.contatoId) h += '<button class="btn btn-linha" type="button" id="ver-contato">' + ic('i-pessoas') + 'Ver no funil de contatos</button>';
     else h += '<button class="btn btn-linha" type="button" id="virar-contato">' + ic('i-mais') + 'Salvar como contato</button>';
     h += '</div>';
     abrirFolha(h);
-    if (m.canal === 'instagram') ligarResposta(m);
     var vc = $('#ver-contato');
     if (vc) vc.addEventListener('click', function () {
       carregarContatos().then(function () { abrirContato(S.contatos.filter(function (c) { return c.id === m.contatoId; })[0]); });
@@ -565,35 +620,204 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     });
   }
 
-  function ligarResposta(m) {
-    var caixa = $('#ig-conversa'), form = $('#form-resp'), erro = $('#resp-erro');
-    function hora(ms) { var d = new Date(ms); return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
-    function mostrar(c) {
-      if (!caixa || !document.body.contains(caixa)) return;
-      caixa.innerHTML = (c.mensagens || []).map(function (x) {
-        return '<div class="bolha' + (x.eu ? ' eu' : '') + '">' + esc(x.texto) + '<time>' + completo(x.quando) + '</time></div>';
-      }).join('') || '<p class="sub">Sem mensagens para mostrar.</p>';
-      if (!c.podeResponder) caixa.innerHTML += '<p class="aviso-ig">O Instagram só deixa responder por aqui até 24 horas depois da última mensagem da pessoa. Essa já passou do prazo: use o botão <b>Abrir no Instagram</b>.</p>';
-      else caixa.innerHTML += '<p class="sub prazo-ig">Dá para responder por aqui até ' + hora(c.prazo) + (new Date(c.prazo).getDate() !== new Date().getDate() ? ' de amanhã' : '') + '.</p>';
-      caixa.scrollTop = caixa.scrollHeight;
+  /* ───────── Tela de conversa (Instagram e chat do site) ───────── */
+  var C = null;
+  function hm(iso) { var d = new Date(iso); return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+  function diaDe(iso) {
+    var d = new Date(iso), hoje = new Date(), ontem = new Date(); ontem.setDate(hoje.getDate() - 1);
+    if (d.toDateString() === hoje.toDateString()) return 'Hoje';
+    if (d.toDateString() === ontem.toDateString()) return 'Ontem';
+    return d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: d.getFullYear() === hoje.getFullYear() ? undefined : 'numeric' });
+  }
+  function inicial(nome) { return (String(nome || '?').replace(/^@/, '').charAt(0) || '?').toUpperCase(); }
+  function abrirChat(m) {
+    var ig = m.canal === 'instagram';
+    C = { m: m, ig: ig, msgs: [], cursor: '', mais: false, resp: null, pode: false, prazo: 0, timer: null };
+    $('#chat-av').className = 'av av-' + m.canal;
+    $('#chat-av').innerHTML = esc(inicial(m.nome)) + '<span class="selo">' + ic(CANAL_ICONE[m.canal]) + '</span>';
+    $('#chat-nome').textContent = m.nome;
+    $('#chat-sub').textContent = ig ? 'Instagram' : 'Chat do site · atendente virtual';
+    var ext = $('#chat-externo'); ext.hidden = !ig; if (ig) ext.href = m.link;
+    $('#chat-contato').setAttribute('aria-label', m.contatoId ? 'Ver no funil de contatos' : 'Salvar como contato');
+    $('#chat-msgs').innerHTML = '<p class="chat-aviso" style="margin-top:30px">Carregando a conversa…</p>';
+    $('#chat-pe').innerHTML = '';
+    focoAntes = document.activeElement;
+    $('#chat').hidden = false;
+    document.body.style.overflow = 'hidden';
+    try { history.pushState({ chat: 1 }, ''); } catch (e) {}
+    setTimeout(function () { $('#chat-voltar').focus(); }, 30);
+    if (!ig) {
+      C.msgs = (m.historico || []).map(function (x, i) { return { id: 'h' + i, eu: x.role !== 'user', texto: x.content, quando: m.quando }; });
+      if (!C.msgs.length) C.msgs = [{ id: 'h0', eu: false, texto: m.texto, quando: m.quando }];
+      desenharMsgs(true);
+      $('#chat-pe').innerHTML = '<p class="chat-aviso">Conversa do atendente virtual com um visitante do site (as respostas da direita são da IA). Não dá para responder por aqui: se a pessoa foi para o WhatsApp, procure pelo nome dela lá.</p>';
+      return;
     }
-    api('igConversa', { id: m.id }).then(mostrar, function (e) { if (caixa) caixa.innerHTML = '<p class="erro">' + esc(textoErro(e)) + '</p>'; });
-    form.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      var txt = form.texto.value.trim(), bt = form.querySelector('button');
-      erro.textContent = '';
-      if (!txt) { erro.textContent = 'Escreva a resposta antes de enviar.'; form.texto.focus(); return; }
-      bt.disabled = true; bt.lastChild.textContent = 'Enviando…';
-      api('igResponder', { id: m.id, texto: txt }).then(function (c) {
-        form.texto.value = '';
-        delete S.cache.mensagens; delete S.cache.inicio;
-        mostrar(c);
-        avisar('Resposta enviada no Instagram.');
-      }, function (e) {
-        var t = textoErro(e);
-        erro.textContent = t.indexOf('JANELA_24H') >= 0 ? 'Passou o prazo de 24 horas desde a última mensagem da pessoa. Responda pelo botão Abrir no Instagram.' : t;
-      }).then(function () { bt.disabled = false; bt.lastChild.textContent = 'Enviar resposta'; });
+    api('igConversa', { id: m.id }).then(function (r) {
+      if (!C || C.m !== m) return;
+      C.msgs = r.mensagens || []; C.cursor = r.cursor; C.mais = r.mais;
+      desenharMsgs(true); desenharPe(r);
+      C.timer = setInterval(buscarNovas, 15000);
+    }, function (e) {
+      $('#chat-msgs').innerHTML = '<p class="erro" style="text-align:center;margin-top:30px">' + esc(textoErro(e)) + '</p>';
     });
+  }
+  function fecharChat() {
+    if ($('#chat').hidden) return;
+    if (C && C.timer) clearInterval(C.timer);
+    C = null;
+    $('#chat').hidden = true; $('#chat-msgs').innerHTML = ''; $('#chat-pe').innerHTML = '';
+    document.body.style.overflow = '';
+    if (focoAntes && document.contains(focoAntes)) focoAntes.focus();
+    focoAntes = null;
+    if (S.aba === 'mensagens' || S.aba === 'inicio') ir(S.aba);
+  }
+  function voltarDoChat() { if (history.state && history.state.chat) history.back(); else fecharChat(); }
+  window.addEventListener('popstate', function () { if (!$('#chat').hidden) { fecharFolha(); fecharChat(); } });
+  function desenharMsgs(praBaixo) {
+    var caixa = $('#chat-msgs'), h = '<div class="chat-in">', ultimoDia = '';
+    if (C.mais) h += '<button type="button" class="chip mais-antigas" id="mais-antigas">Carregar mensagens antigas</button>';
+    else if (C.ig) h += '<p class="chat-aviso">Início da conversa</p>';
+    C.msgs.forEach(function (x, i) {
+      var dia = diaDe(x.quando);
+      if (dia !== ultimoDia) { h += '<p class="dia">' + esc(dia) + '</p>'; ultimoDia = dia; }
+      var cit = x.resp ? '<span class="cit"><b>' + (x.resp.eu ? 'Você' : esc(C.m.nome)) + '</b>' + esc(x.resp.texto) + '</span>' : '';
+      h += '<div class="b-linha' + (x.eu ? ' eu' : '') + (C.resp && C.resp.id === x.id ? ' marcada' : '') + '" data-i="' + i + '">' +
+        '<div class="bolha2' + (x.enviando ? ' enviando' : '') + '">' + cit + esc(x.texto) + '<time>' + (x.enviando ? 'enviando…' : hm(x.quando)) + '</time></div>' +
+        (C.ig && !x.enviando ? '<button type="button" class="b-resp" data-i="' + i + '" aria-label="Responder esta mensagem">' + ic('i-responder') + '</button>' : '') + '</div>';
+    });
+    h += '</div>';
+    caixa.innerHTML = h;
+    if (praBaixo) caixa.scrollTop = caixa.scrollHeight;
+    var ma = $('#mais-antigas');
+    if (ma) ma.addEventListener('click', carregarAntigas);
+  }
+  function carregarAntigas() {
+    var bt = $('#mais-antigas'), caixa = $('#chat-msgs'), m = C.m;
+    bt.disabled = true; bt.textContent = 'Carregando…';
+    api('igConversa', { id: m.id, cursor: C.cursor }).then(function (r) {
+      if (!C || C.m !== m) return;
+      var antes = caixa.scrollHeight, topo = caixa.scrollTop;
+      var ids = {}; C.msgs.forEach(function (x) { ids[x.id] = 1; });
+      C.msgs = (r.mensagens || []).filter(function (x) { return !ids[x.id]; }).concat(C.msgs);
+      C.cursor = r.cursor; C.mais = r.mais && (r.mensagens || []).length > 0;
+      desenharMsgs(false);
+      caixa.scrollTop = topo + (caixa.scrollHeight - antes);
+    }, function (e) { bt.disabled = false; bt.textContent = 'Carregar mensagens antigas'; avisar(textoErro(e)); });
+  }
+  function juntar(r) {
+    var ids = {}; C.msgs.forEach(function (x) { if (!x.enviando) ids[x.id] = 1; });
+    var novas = (r.mensagens || []).filter(function (x) { return !ids[x.id]; });
+    var mudouResp = (r.mensagens || []).some(function (x) { return x.resp && !C.msgs.some(function (y) { return y.id === x.id && y.resp; }); });
+    C.msgs = C.msgs.filter(function (x) { return !x.enviando; });
+    if (mudouResp) { var porId = {}; (r.mensagens || []).forEach(function (x) { porId[x.id] = x; }); C.msgs = C.msgs.map(function (x) { return porId[x.id] || x; }); }
+    C.msgs = C.msgs.concat(novas);
+    return novas.length > 0 || mudouResp;
+  }
+  function buscarNovas() {
+    if (!C || !C.ig || document.visibilityState !== 'visible') return;
+    var m = C.m, caixa = $('#chat-msgs');
+    api('igConversa', { id: m.id }).then(function (r) {
+      if (!C || C.m !== m) return;
+      var perto = caixa.scrollHeight - caixa.scrollTop - caixa.clientHeight < 120;
+      if (juntar(r)) desenharMsgs(perto);
+      if (r.podeResponder !== C.pode) desenharPe(r);
+    }, function () {});
+  }
+  function desenharPe(r) {
+    C.pode = !!r.podeResponder; C.prazo = r.prazo;
+    var pe = $('#chat-pe');
+    if (!C.pode) {
+      pe.innerHTML = '<p class="chat-aviso">O Instagram só deixa responder por aqui até <b>24 horas</b> depois da última mensagem da pessoa. Essa conversa passou do prazo; quando ela mandar mensagem de novo, a caixa de escrever volta.</p>' +
+        '<a class="btn btn-linha btn-cheio" href="' + esc(C.m.link) + '" target="_blank" rel="noopener">' + ic('i-instagram') + 'Responder no Instagram</a>';
+      return;
+    }
+    pe.innerHTML = '<div class="cit-barra" id="cit-barra" hidden><div><b id="cit-quem"></b><span id="cit-txt"></span></div><button type="button" class="icone-btn" id="cit-x" aria-label="Cancelar resposta à mensagem">' + ic('i-x') + '</button></div>' +
+      '<form class="chat-form" id="chat-form" novalidate><textarea id="chat-txt" rows="1" maxlength="1000" placeholder="Mensagem" aria-label="Escreva sua mensagem"></textarea>' +
+      '<button class="enviar" type="submit" aria-label="Enviar">' + ic('i-enviar') + '</button></form>' +
+      '<p class="erro chat-erro" id="chat-erro" role="alert"></p>';
+    var txt = $('#chat-txt');
+    txt.addEventListener('input', function () { txt.style.height = 'auto'; txt.style.height = Math.min(txt.scrollHeight, 140) + 'px'; });
+    txt.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey && window.matchMedia('(pointer:fine)').matches) { e.preventDefault(); enviarChat(); }
+    });
+    $('#chat-form').addEventListener('submit', function (e) { e.preventDefault(); enviarChat(); });
+    $('#cit-x').addEventListener('click', function () { marcarResp(null); txt.focus(); });
+  }
+  function marcarResp(x) {
+    if (!C) return;
+    C.resp = x ? { id: x.id, texto: x.texto, eu: x.eu } : null;
+    var barra = $('#cit-barra');
+    if (barra) {
+      barra.hidden = !x;
+      if (x) { $('#cit-quem').textContent = x.eu ? 'Respondendo a você mesmo' : 'Respondendo ' + C.m.nome; $('#cit-txt').textContent = x.texto; }
+    }
+    $$('#chat-msgs .b-linha').forEach(function (l) { var y = C.msgs[+l.dataset.i]; l.classList.toggle('marcada', !!x && !!y && y.id === x.id); });
+    if (x && !C.pode) avisar('Essa conversa passou do prazo de 24 horas. Responda pelo Instagram.');
+    else if (x && $('#chat-txt')) $('#chat-txt').focus();
+  }
+  function enviarChat() {
+    var txt = $('#chat-txt'), erro = $('#chat-erro'), bt = $('#chat-form .enviar'), m = C.m;
+    var texto = txt.value.trim();
+    erro.textContent = '';
+    if (!texto) { txt.focus(); return; }
+    var resp = C.resp;
+    C.msgs.push({ id: 'env' + Date.now(), eu: true, texto: texto, quando: new Date().toISOString(), enviando: true, resp: resp ? { texto: resp.texto, eu: resp.eu } : null });
+    txt.value = ''; txt.style.height = '';
+    marcarResp(null);
+    desenharMsgs(true);
+    bt.disabled = true;
+    api('igResponder', { id: m.id, texto: texto, resp: resp }).then(function (r) {
+      if (!C || C.m !== m) return;
+      juntar(r); desenharMsgs(true);
+      if (r.podeResponder !== C.pode) desenharPe(r);
+      delete S.cache.mensagens; delete S.cache.inicio;
+    }, function (e) {
+      if (!C || C.m !== m) return;
+      C.msgs = C.msgs.filter(function (x) { return !x.enviando; });
+      desenharMsgs(true);
+      var t = textoErro(e);
+      if (t.indexOf('JANELA_24H') >= 0) { desenharPe({ podeResponder: false }); avisar('Passou o prazo de 24 horas. Responda pelo Instagram.'); return; }
+      var b2 = $('#chat-erro'), t2 = $('#chat-txt');
+      if (b2) b2.textContent = 'Não enviou: ' + t;
+      if (t2) { t2.value = texto; t2.focus(); }
+      if (resp) marcarResp(resp);
+    }).then(function () { var b = $('#chat-form .enviar'); if (b) b.disabled = false; });
+  }
+  /* Responder uma mensagem: botão ao lado, segurar o dedo ou arrastar para o lado */
+  (function () {
+    var caixa = $('#chat-msgs'), ini = null, segurar = null;
+    function msgDe(el) { var l = el && el.closest && el.closest('.b-linha'); return l && C ? { linha: l, x: C.msgs[+l.dataset.i] } : null; }
+    function solta() { if (ini) ini.alvo.linha.querySelector('.bolha2').style.transform = ''; }
+    caixa.addEventListener('click', function (e) {
+      var b = e.target.closest('.b-resp'); if (!b || !C) return;
+      marcarResp(C.msgs[+b.dataset.i]);
+    });
+    caixa.addEventListener('touchstart', function (e) {
+      var alvo = msgDe(e.target); if (!alvo || !alvo.x || !C.ig || alvo.x.enviando || e.target.closest('.b-resp')) return;
+      var t = e.touches[0]; ini = { x: t.clientX, y: t.clientY, alvo: alvo, dx: 0 };
+      segurar = setTimeout(function () { if (ini && Math.abs(ini.dx) < 8) { marcarResp(ini.alvo.x); if (navigator.vibrate) navigator.vibrate(15); solta(); ini = null; } }, 550);
+    }, { passive: true });
+    caixa.addEventListener('touchmove', function (e) {
+      if (!ini) return;
+      var t = e.touches[0], dx = t.clientX - ini.x, dy = t.clientY - ini.y;
+      if (Math.abs(dy) > 14 && Math.abs(dy) > Math.abs(dx)) { clearTimeout(segurar); solta(); ini = null; return; }
+      ini.dx = dx;
+      if (dx > 0) ini.alvo.linha.querySelector('.bolha2').style.transform = 'translateX(' + Math.min(dx, 70) + 'px)';
+    }, { passive: true });
+    caixa.addEventListener('touchend', function () {
+      clearTimeout(segurar);
+      if (!ini) return;
+      solta();
+      if (ini.dx > 55) { marcarResp(ini.alvo.x); if (navigator.vibrate) navigator.vibrate(15); }
+      ini = null;
+    });
+  })();
+  $('#chat-voltar').addEventListener('click', voltarDoChat);
+  $('#chat-contato').addEventListener('click', function () { if (C) contatoDoChat(C.m); });
+  function contatoDoChat(m) {
+    if (m.contatoId) carregarContatos().then(function () { abrirContato(S.contatos.filter(function (c) { return c.id === m.contatoId; })[0]); });
+    else abrirContato(null, { nome: m.nome.replace(/^@/, ''), contato: m.contato, canal: m.canal === 'instagram' ? 'Instagram' : 'Site', assunto: m.assunto === 'Direct do Instagram' ? '' : String(m.assunto || '').replace(/^Chat do site( · )?/, ''), mensagem: m.texto, ref: m.canal + ':' + m.id });
   }
 
   /* ───────── Contatos (funil) ───────── */
@@ -959,14 +1183,14 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
     focoAntes = null;
   }
   $$('[data-fechar]').forEach(function (b) { b.addEventListener('click', fecharFolha); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fecharFolha(); });
+  document.addEventListener('keydown', function (e) { if (e.key !== 'Escape') return; if (!$('#folha').hidden) fecharFolha(); else if (!$('#chat').hidden) voltarDoChat(); });
 
   /* Atualiza sozinho a cada 2 minutos quando o painel está aberto */
   setInterval(function () {
-    if (document.visibilityState === 'visible' && !$('#painel').hidden && $('#folha').hidden && (S.aba === 'inicio' || S.aba === 'mensagens')) ir(S.aba);
+    if (document.visibilityState === 'visible' && !$('#painel').hidden && $('#folha').hidden && $('#chat').hidden && (S.aba === 'inicio' || S.aba === 'mensagens')) ir(S.aba);
   }, 120000);
   document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'visible' && !$('#painel').hidden && $('#folha').hidden && S.token) ir(S.aba);
+    if (document.visibilityState === 'visible' && !$('#painel').hidden && $('#folha').hidden && $('#chat').hidden && S.token) ir(S.aba);
   });
 
   /* Começo */
