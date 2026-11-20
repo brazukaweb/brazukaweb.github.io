@@ -296,15 +296,53 @@ details.ajuda summary{cursor:pointer;font-weight:700;color:var(--amarelo);min-he
 .dos-breve{margin:14px 0 0;font-size:12.5px}
 .b-erro{display:block;margin-top:5px;font-size:12.5px;font-weight:600;color:#7a1d10}
 @media (min-width:900px){
-  body.modo-chats.dossie-aberto .chat{right:340px}
-  body.modo-chats .dossie:not([hidden]){display:block;position:fixed;top:69px;right:0;bottom:0;width:340px;z-index:4;overflow-y:auto;background:var(--verde2);border-left:1px solid var(--linha);padding:14px 16px 24px}
+  body.modo-chats.dossie-aberto .chat{right:var(--dossie-w)}
+  body.modo-chats .dossie:not([hidden]){display:block;position:fixed;top:69px;right:0;bottom:0;width:var(--dossie-w);z-index:4;overflow-y:auto;background:var(--verde2);border-left:1px solid var(--linha);padding:14px 16px 24px}
   body.modo-chats .chat[hidden]~.dossie{display:none!important}
+}
+/* E-mails em cartões, lista enxuta e barras de ajuste */
+.em-assunto{display:flex;align-items:center;gap:8px;align-self:center;max-width:100%;margin:6px auto 4px;padding:6px 14px;border-radius:999px;background:var(--verde2);border:1px solid var(--linha);font-size:13.5px;font-weight:600;color:var(--off)}
+.em-assunto svg{width:15px;height:15px;color:var(--azul);flex:none}
+.em-card{align-self:flex-start;width:min(100%,620px);background:var(--verde2);border:1px solid var(--linha);border-radius:16px;padding:12px 14px;margin:4px 0}
+.em-card.eu{align-self:flex-end;background:rgba(255,201,60,.08);border-color:rgba(255,201,60,.28)}
+.em-card.enviando{opacity:.7}
+.em-card header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.em-card header .av{width:30px;height:30px;font-size:13px}
+.em-card header b{font-size:14.5px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.em-card header time{font-size:12px;color:var(--suave);flex:none}
+.em-corpo{font-size:14.5px;line-height:1.55;color:var(--cinza);white-space:pre-wrap;overflow-wrap:anywhere}
+.em-corpo.fechado{max-height:9.3em;overflow:hidden;-webkit-mask-image:linear-gradient(#000 60%,transparent);mask-image:linear-gradient(#000 60%,transparent)}
+.em-link{display:inline-block;margin:2px 0;padding:1px 9px;border-radius:999px;background:rgba(140,184,255,.12);color:var(--azul);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.em-link:hover{background:rgba(140,184,255,.22)}
+.em-mais{margin-top:6px;font-size:13px;font-weight:700;color:var(--amarelo);min-height:32px}
+.em-card .b-erro{color:var(--vermelho);margin:6px 0 0}
+@container (max-width:380px){.seg-status .n{display:none}.seg-status button{font-size:12px;justify-content:center}}
+.dica{margin-top:16px;font-size:13.5px;color:var(--suave)}
+.dica summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;min-height:36px;font-weight:600;list-style:none}
+.dica summary::-webkit-details-marker{display:none}
+.dica summary svg{width:16px;height:16px}
+.dica p{margin:4px 0 0;line-height:1.5}
+.alca{display:none}
+@media (min-width:900px){
+  body.modo-chats .msg{min-height:64px;padding:12px}
+  body.modo-chats .seg-status{font-size:12.5px}
+  body.modo-chats .seg-status .pt{display:none}
+  body.modo-chats .msg-texto{-webkit-line-clamp:1}
+  body.modo-chats .alca{display:block;position:fixed;top:69px;bottom:0;width:9px;margin-left:-4px;z-index:6;cursor:col-resize;background:transparent;touch-action:none}
+  body.modo-chats #alca-lista{left:calc(var(--lado) + var(--lista-w))}
+  body.modo-chats #alca-dossie{left:calc(100% - var(--dossie-w))}
+  body.modo-chats .chat[hidden]~#alca-dossie{display:none!important}
+  body.modo-chats:not(.dossie-aberto) #alca-dossie{display:none!important}
+  .alca::after{content:"";position:absolute;left:4px;top:0;bottom:0;width:1px;background:transparent;transition:background .15s,width .15s}
+  .alca:hover::after,.alca:focus-visible::after,.alca.puxando::after{width:3px;left:3px;background:var(--amarelo)}
+  .alca:focus-visible{outline:none}
+  body.puxando-alca{cursor:col-resize;user-select:none}
 }
 /* Menu lateral e chats lado a lado (computador) */
 html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
 .lado-topo,.lado-sub,.so-lado,.chat-vazio{display:none!important}
 .seg-status{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--verde2);border:1px solid var(--linha);border-radius:12px;padding:4px;margin:0 0 12px}
-.seg-status button{min-height:38px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--cinza);display:flex;align-items:center;justify-content:center;gap:6px}
+.seg-status button{min-height:38px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--cinza);display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;padding:0 4px;white-space:nowrap;overflow:hidden}
 .seg-status button[aria-pressed="true"]{background:var(--verde3);color:var(--off)}
 .seg-status .n{font-size:12px;color:var(--suave)}
 .seg-status button[aria-pressed="true"] .n{color:var(--amarelo)}
@@ -314,7 +352,7 @@ html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
 .pt-pend{background:var(--amarelo)}
 .pt-resp{background:var(--verdeok)}
 @media (min-width:900px){
-  :root{--lado:236px}
+  :root{--lado:236px;--lista-w:400px;--dossie-w:340px}
   body.lado-fechado{--lado:76px}
   #painel{padding-left:var(--lado)}
   .topo .tag{display:none}
@@ -343,14 +381,14 @@ html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
   body.lado-fechado .abas button{justify-content:center;padding:0}
   body.lado-fechado .abas .bolinha{position:absolute;top:4px;left:auto;right:6px;margin:0}
   /* Chats: lista à esquerda, conversa à direita */
-  body.modo-chats main{position:fixed;top:69px;bottom:0;left:var(--lado);width:400px;max-width:none;margin:0;overflow-y:auto;padding:14px 14px 24px;border-right:1px solid var(--linha);overscroll-behavior:contain}
+  body.modo-chats main{position:fixed;container-type:inline-size;top:69px;bottom:0;left:var(--lado);width:var(--lista-w);max-width:none;margin:0;overflow-y:auto;overflow-x:hidden;padding:14px 14px 24px;border-right:1px solid var(--linha);overscroll-behavior:contain}
   body.modo-chats .chips{margin:0 -14px 12px;padding:2px 14px 4px}
-  body.modo-chats .chat,body.modo-chats .chat-vazio{position:fixed;top:69px;left:calc(var(--lado) + 400px);right:0;bottom:0;z-index:4}
+  body.modo-chats .chat,body.modo-chats .chat-vazio{position:fixed;top:69px;left:calc(var(--lado) + var(--lista-w));right:0;bottom:0;z-index:4}
   body.modo-chats .chat-vazio{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;color:var(--suave);padding:24px}
   body.modo-chats .chat-vazio svg{width:46px;height:46px;color:var(--verde3)}
   body.modo-chats .chat:not([hidden])+.chat-vazio{display:none!important}
   body.modo-chats .chat-topo{padding-top:8px}
-  body.modo-chats .toast{left:calc(var(--lado) + 416px)}
+  body.modo-chats .toast{left:calc(var(--lado) + var(--lista-w) + 16px)}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -442,6 +480,8 @@ html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
 </div>
 <div class="chat-vazio" aria-hidden="true"><svg class="i"><use href="#i-chat"/></svg><p>Escolha uma conversa na lista para abrir aqui.</p></div>
 <aside class="dossie" id="dossie" aria-label="Dossiê do cliente" hidden></aside>
+<div class="alca" id="alca-lista" role="separator" aria-orientation="vertical" aria-label="Ajustar a largura da lista de chats" tabindex="0" title="Arraste para ajustar. Duplo clique volta ao padrão."></div>
+<div class="alca" id="alca-dossie" role="separator" aria-orientation="vertical" aria-label="Ajustar a largura do dossiê" tabindex="0" title="Arraste para ajustar. Duplo clique volta ao padrão."></div>
 
 <div id="toast" class="toast" role="status" aria-live="polite"><span id="toast-txt"></span><button type="button" id="toast-acao" hidden></button></div>
 
@@ -602,6 +642,38 @@ html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
   $$('.abas button[data-aba]').forEach(function (b) { b.addEventListener('click', function () { ir(b.dataset.aba); }); });
   $$('.lado-sub button').forEach(function (b) { b.addEventListener('click', function () { S.status = b.dataset.sub; S.filtroMsg = 'todas'; ir('mensagens'); }); });
   function telaLarga() { return window.matchMedia('(min-width:900px)').matches; }
+  /* Barras para ajustar a largura da lista de chats e do dossiê (o painel lembra o tamanho) */
+  (function () {
+    var LIM = { lista: [300, 620, 400], dossie: [260, 560, 340] };
+    function aplicar(qual, px, salvar) {
+      var l = LIM[qual], v = Math.round(Math.min(l[1], Math.max(l[0], px)));
+      document.documentElement.style.setProperty(qual === 'lista' ? '--lista-w' : '--dossie-w', v + 'px');
+      var a = $('#alca-' + qual); a.setAttribute('aria-valuenow', v); a.setAttribute('aria-valuemin', l[0]); a.setAttribute('aria-valuemax', l[1]);
+      if (salvar) { try { localStorage.setItem('painel-' + qual + '-w', v); } catch (e) {} }
+      return v;
+    }
+    function atual(qual) { return parseInt(getComputedStyle(document.documentElement).getPropertyValue(qual === 'lista' ? '--lista-w' : '--dossie-w'), 10) || LIM[qual][2]; }
+    ['lista', 'dossie'].forEach(function (qual) {
+      var salvo = null; try { salvo = localStorage.getItem('painel-' + qual + '-w'); } catch (e) {}
+      aplicar(qual, salvo ? +salvo : LIM[qual][2], false);
+      var a = $('#alca-' + qual);
+      a.addEventListener('pointerdown', function (e) {
+        e.preventDefault(); a.setPointerCapture(e.pointerId); a.classList.add('puxando'); document.body.classList.add('puxando-alca');
+        var x0 = e.clientX, w0 = atual(qual);
+        function mover(ev) { var dx = ev.clientX - x0; aplicar(qual, qual === 'lista' ? w0 + dx : w0 - dx, false); }
+        function soltar() { a.removeEventListener('pointermove', mover); a.removeEventListener('pointerup', soltar); a.removeEventListener('pointercancel', soltar); a.classList.remove('puxando'); document.body.classList.remove('puxando-alca'); aplicar(qual, atual(qual), true); }
+        a.addEventListener('pointermove', mover); a.addEventListener('pointerup', soltar); a.addEventListener('pointercancel', soltar);
+      });
+      a.addEventListener('dblclick', function () { aplicar(qual, LIM[qual][2], true); avisar('Tamanho padrão de volta.'); });
+      a.addEventListener('keydown', function (e) {
+        var passo = e.shiftKey ? 60 : 20, d = 0;
+        if (e.key === 'ArrowLeft') d = qual === 'lista' ? -passo : passo;
+        else if (e.key === 'ArrowRight') d = qual === 'lista' ? passo : -passo;
+        else if (e.key === 'Home') { aplicar(qual, LIM[qual][2], true); e.preventDefault(); return; }
+        if (d) { e.preventDefault(); aplicar(qual, atual(qual) + d, true); }
+      });
+    });
+  })();
   function ladoFechado(f) {
     document.body.classList.toggle('lado-fechado', f);
     $('#lado-recolher').setAttribute('aria-expanded', String(!f));
@@ -694,7 +766,7 @@ html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
         : '<span class="ic ic-' + m.canal + '">' + ic(CANAL_ICONE[m.canal] || 'i-chat') + '</span>') +
       '<span class="msg-corpo"><span class="msg-linha"><b>' + esc(m.nome) + '</b><time datetime="' + esc(m.quando) + '">' + relativo(m.quando) + '</time></span>' +
       (m.canal === 'instagram' ? '' : '<span class="msg-assunto">' + esc(m.assunto) + '</span>') +
-      '<span class="msg-texto">' + (m.eu ? '<span class="voce">Você: </span>' : '') + esc(m.texto) + '</span></span>' +
+      '<span class="msg-texto">' + (m.eu ? '<span class="voce">Você: </span>' : '') + esc(String(m.texto || '').replace(/\[(image|imagem):[^\]]*\]/gi, '').replace(/\s+/g, ' ').trim()) + '</span></span>' +
       (m.pendente ? '<span class="ponto"><span class="sr">Esperando resposta</span></span>' : '') + '</button>';
   }
   VIEWS.mensagens = {
@@ -719,7 +791,7 @@ html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
       if (d.gmail === false && (S.filtroMsg === 'email' || S.filtroMsg === 'todas')) h += '<div class="faixa">' + ic('i-email') + '<div><b>E-mail:</b> o Google não liberou a leitura do Gmail para o painel nesta conta. Os e-mails continuam chegando normalmente no Gmail.<br><a class="btn btn-linha" href="https://mail.google.com/" target="_blank" rel="noopener">Abrir o Gmail</a></div></div>';
       if (!d.instagram && (S.filtroMsg === 'instagram' || S.filtroMsg === 'todas')) h += '<div class="faixa">' + ic('i-instagram') + '<div>O Instagram ainda não está conectado.<br><button class="btn btn-amarelo" type="button" data-acao="ir" data-para="ajustes">Conectar</button></div></div>';
       h += lista.length ? '<div class="lista">' + lista.map(itemMsg).join('') + '</div>' : vazio('i-chat', S.status === 'pend' ? 'Tudo respondido por aqui.' : 'Nenhuma mensagem nesse filtro.');
-      h += '<div class="faixa" style="margin-top:18px">' + ic('i-whatsapp') + '<div><b>E o WhatsApp?</b> Seu WhatsApp pessoal não é lido aqui, para não arriscar o seu número. Quem pede orçamento pelo site aparece em <b>Site / WhatsApp</b>, porque essas pessoas são levadas direto para o seu WhatsApp. Quando você tiver um número só da empresa, dá para ligar ele aqui.</div></div>';
+      h += '<details class="dica"><summary>' + ic('i-whatsapp') + 'E o WhatsApp?</summary><p>' + 'Seu WhatsApp pessoal não é lido aqui, para não arriscar o seu número. Quem pede orçamento pelo site aparece em <b>Site / WhatsApp</b>, porque essas pessoas são levadas direto para o seu WhatsApp. Quando você tiver um número só da empresa, dá para ligar ele aqui.</p></details>';
       conteudo.innerHTML = h;
       $$('[data-chip="msg"]').forEach(function (b) { b.addEventListener('click', function () { S.filtroMsg = b.dataset.v; VIEWS.mensagens.render(d); }); });
       $$('#conteudo [data-situ]').forEach(function (b) { b.addEventListener('click', function () { S.status = b.dataset.situ; VIEWS.mensagens.render(d); }); });
@@ -825,14 +897,43 @@ html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
   }
   function voltarDoChat() { if (history.state && history.state.chat) history.back(); else fecharChat(); }
   window.addEventListener('popstate', function () { if (!$('#chat').hidden) { fecharFolha(); fecharChat(); } });
+  /* E-mail com cara de conversa: tira imagens, rodapés e links enormes */
+  function limparEmail(t) {
+    var linhas = String(t || '').replace(/\r/g, '').replace(/\[(image|imagem):[^\]]*\]/gi, '').split('\n'), fim = [];
+    for (var i = 0; i < linhas.length; i++) {
+      var l = linhas[i].replace(/\s+$/, '');
+      if (/^\s*(você recebeu este|voce recebeu este|you received this|este e-mail foi enviado|this email was sent|para cancelar|cancelar inscrição|unsubscribe|©|\(c\) \d{4})/i.test(l)) break;
+      if (/^\s*<?https?:\/\/\S+>?\s*$/.test(l) && l.length > 60) { fim.push('[link]' + l.trim().replace(/^<|>$/g, '')); continue; }
+      fim.push(l);
+    }
+    return fim.join('\n')
+      .replace(/([^\n.:!?;])\n(?=[a-zà-ú(])/g, '$1 ')
+      .replace(/\n{3,}/g, '\n\n').trim();
+  }
+  function htmlEmail(t) {
+    return esc(t).replace(/\[link\](https?:\/\/[^\s<]+)|&lt;(https?:\/\/[^\s&]+)&gt;|(https?:\/\/[^\s<]+)/g, function (_, a, b, c) {
+      var u = a || b || c, dom = u.replace(/^https?:\/\//, '').split(/[\/?#]/)[0].replace(/^www\./, '');
+      return '<a class="em-link" href="' + u + '" target="_blank" rel="noopener noreferrer">' + esc(dom) + ' ↗</a>';
+    });
+  }
+  function cartaoEmail(x, i) {
+    var txt = limparEmail(x.texto), longo = txt.length > 420 || txt.split('\n').length > 7;
+    var quem = x.eu ? 'Você' : (x.nome || C.m.nome);
+    return '<article class="em-card' + (x.eu ? ' eu' : '') + (x.enviando ? ' enviando' : '') + '" data-i="' + i + '">' +
+      '<header><span class="av ' + (x.eu ? 'av-cli' : 'av-email') + '" aria-hidden="true">' + esc(inicial(quem)) + '</span><b>' + esc(quem) + '</b><time>' + (x.enviando ? 'na fila · sai em até 1 min' : hm(x.quando)) + '</time></header>' +
+      '<div class="em-corpo' + (longo ? ' fechado' : '') + '">' + (htmlEmail(txt) || '<i>(sem texto)</i>') + '</div>' +
+      (longo ? '<button type="button" class="em-mais" aria-expanded="false">Mostrar tudo</button>' : '') +
+      (x.erro ? '<p class="b-erro">Não enviado: ' + esc(x.erro) + '</p>' : '') + '</article>';
+  }
   function desenharMsgs(praBaixo) {
     var caixa = $('#chat-msgs'), h = '<div class="chat-in">', ultimoDia = '';
     if (C.mais) h += '<button type="button" class="chip mais-antigas" id="mais-antigas">Carregar mensagens antigas</button>';
     else if (C.ig) h += '<p class="chat-aviso">Início da conversa</p>';
-    else if (C.em && C.assunto) h += '<p class="chat-aviso"><b>Assunto:</b> ' + esc(C.assunto) + '</p>';
+    else if (C.em && C.assunto) h += '<p class="em-assunto">' + ic('i-email') + esc(C.assunto) + '</p>';
     C.msgs.forEach(function (x, i) {
       var dia = diaDe(x.quando);
       if (dia !== ultimoDia) { h += '<p class="dia">' + esc(dia) + '</p>'; ultimoDia = dia; }
+      if (C.em) { h += cartaoEmail(x, i); return; }
       var cit = x.resp ? '<span class="cit"><b>' + (x.resp.eu ? 'Você' : esc(C.m.nome)) + '</b>' + esc(x.resp.texto) + '</span>' : '';
       h += '<div class="b-linha' + (x.eu ? ' eu' : '') + (C.resp && C.resp.id === x.id ? ' marcada' : '') + '" data-i="' + i + '">' +
         '<div class="bolha2' + (x.enviando ? ' enviando' : '') + '">' + cit + esc(x.texto) + (x.erro ? '<span class="b-erro">Não enviado: ' + esc(x.erro) + '</span>' : '') + '<time>' + (x.enviando ? (C.em ? 'na fila · sai em até 1 min' : 'enviando…') : hm(x.quando)) + '</time></div>' +
@@ -844,6 +945,11 @@ html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
     var ma = $('#mais-antigas');
     if (ma) ma.addEventListener('click', carregarAntigas);
   }
+  $('#chat-msgs').addEventListener('click', function (e) {
+    var b = e.target.closest('.em-mais'); if (!b) return;
+    var corpo = b.previousElementSibling, abrir = corpo.classList.contains('fechado');
+    corpo.classList.toggle('fechado', !abrir); b.textContent = abrir ? 'Mostrar menos' : 'Mostrar tudo'; b.setAttribute('aria-expanded', String(abrir));
+  });
   function carregarAntigas() {
     var bt = $('#mais-antigas'), caixa = $('#chat-msgs'), m = C.m;
     bt.disabled = true; bt.textContent = 'Carregando…';
@@ -893,6 +999,10 @@ html{color-scheme:dark;scrollbar-color:var(--verde3) transparent}
   function desenharPe(r) {
     C.pode = !!r.podeResponder; C.prazo = r.prazo;
     var pe = $('#chat-pe');
+    if (C.em && /no-?reply|n[aã]o-?responda|naoresponda/i.test(C.m.contato || '')) {
+      pe.innerHTML = '<p class="chat-aviso">Esse e-mail veio de um endereço automático (<b>' + esc(C.m.contato) + '</b>), que não recebe respostas.</p>';
+      return;
+    }
     if (!C.pode) {
       pe.innerHTML = '<p class="chat-aviso">O Instagram só deixa responder por aqui até <b>24 horas</b> depois da última mensagem da pessoa. Essa conversa passou do prazo; quando ela mandar mensagem de novo, a caixa de escrever volta.</p>' +
         '<a class="btn btn-linha btn-cheio" href="' + esc(C.m.link) + '" target="_blank" rel="noopener">' + ic('i-instagram') + 'Responder no Instagram</a>';
