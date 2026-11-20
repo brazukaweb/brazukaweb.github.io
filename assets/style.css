@@ -426,4 +426,7 @@ p{margin:0}
 .entrar-adm svg{width:18px;height:18px;flex:none}
 .entrar-adm:hover{border-color:var(--amarelo);color:var(--amarelo)}
 .entrar-adm:focus-visible{outline:3px solid var(--amarelo);outline-offset:3px}
-@media (max-width:900px){.entrar-adm{padding:0 12px}.entrar-adm span{display:none}.topo nav{margin-left:auto}}
+.entrar-adm span{display:none}
+@media (min-width:1360px){.entrar-adm span{display:inline}}
+@media (max-width:1359px){.entrar-adm{padding:0 12px}}
+@media (max-width:900px){.topo nav{margin-left:auto}}
