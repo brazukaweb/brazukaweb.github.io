@@ -376,16 +376,22 @@
 
     // "Como funciona": a linha vai se preenchendo conforme a pessoa desce
     if (animaRolagem && etapas.length) {
+      // Primeiro só lê as medidas, depois escreve (evita o navegador recalcular a página várias vezes por quadro)
       var vh = window.innerHeight;
-      var mesmaLinha = etapas.length > 1 && etapas[0].offsetTop === etapas[1].offsetTop;
       var r = etapasLista.getBoundingClientRect();
+      if (r.bottom < -vh || r.top > vh * 2) return;
+      var mesmaLinha = etapas.length > 1 && etapas[0].offsetTop === etapas[1].offsetTop;
       var p = limita((vh * 0.8 - r.top) / (r.height + vh * 0.3));
+      var fs = [];
       for (var i = 0; i < etapas.length; i++) {
-        var f;
-        if (mesmaLinha) f = limita(p * etapas.length - i);
-        else f = limita((vh * 0.8 - etapas[i].getBoundingClientRect().top) / (vh * 0.3));
-        etapas[i].style.setProperty('--f', f.toFixed(3));
-        etapas[i].classList.toggle('ativa', f > 0.02);
+        fs.push(mesmaLinha ? limita(p * etapas.length - i) : limita((vh * 0.8 - etapas[i].getBoundingClientRect().top) / (vh * 0.3)));
+      }
+      for (var k = 0; k < etapas.length; k++) {
+        var v = fs[k].toFixed(3);
+        if (etapas[k]._f === v) continue;
+        etapas[k]._f = v;
+        etapas[k].style.setProperty('--f', v);
+        etapas[k].classList.toggle('ativa', fs[k] > 0.02);
       }
     }
   }
@@ -638,10 +644,15 @@
     try { ligado = sessionStorage.getItem('bzk_chat_on'); } catch (e) {}
     if (ligado === '1') montar();
     else if (ligado !== '0') {
-      fetch(PAINEL + '?ia=1').then(function (r) { return r.json(); }).then(function (j) {
-        try { sessionStorage.setItem('bzk_chat_on', j && j.ia ? '1' : '0'); } catch (e) {}
-        if (j && j.ia) montar();
-      }).catch(function () {});
+      // Pergunta ao painel só depois que a página terminou de carregar, para não disputar a internet com o site
+      var perguntar = function () {
+        fetch(PAINEL + '?ia=1').then(function (r) { return r.json(); }).then(function (j) {
+          try { sessionStorage.setItem('bzk_chat_on', j && j.ia ? '1' : '0'); } catch (e) {}
+          if (j && j.ia) montar();
+        }).catch(function () {});
+      };
+      var depois = function () { setTimeout(function () { (window.requestIdleCallback || setTimeout)(perguntar); }, 2500); };
+      if (document.readyState === 'complete') depois(); else window.addEventListener('load', depois);
     }
   })();
 })();
